@@ -11,8 +11,8 @@ TODO: Describe the installation process
 
 ## Usage
 
-Clone this repository and compile with gcc and execute.:
-  * `gcc <file.c> -o file.out && ./file.out`
+Clone this repository and after open a terminal session on the working directory that compile with gcc and execute.:
+  * `gcc file.c -o file.out && ./file.out`
 
 ## Contributing
 
