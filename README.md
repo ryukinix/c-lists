@@ -1,6 +1,9 @@
 # Project Name
 
-TODO: Write a project description
+This repository count a few codes made in ANSI C with implementation of lists subclass:
+  * `queue`
+  * `stack`
+  * `deque`
 
 ## Installation
 
@@ -8,7 +11,10 @@ TODO: Describe the installation process
 
 ## Usage
 
-TODO: Write usage instructions
+Clone this repository and compile with gcc and execute.:
+  * ```bash
+      gcc <file.c> -o file.out && ./file.out
+  ```
 
 ## Contributing
 
@@ -20,16 +26,47 @@ TODO: Write usage instructions
 
 ## History
 
-TODO: Write history
+For now, after hours, I finally i did can implement a basic control system for a "half-dynamic" queue.
 
 ## Credits
-
-TODO: Write credits
+  * Me (Manoel Vilela)
 
 ## License
 
-TODO: Write license
+MIT
 
 ## Roadmap
-  - [ ] first thing
-  - [ ] other things
+  - [ ] make a system control type and your fundamental methods for the three lists types:
+    - [ ] queue
+      - [X] static
+        - [X] insert
+        - [X] delete
+        - [X] search
+        - [X] edit
+      - [ ] dynamic
+        - [ ] insert
+        - [ ] delete
+        - [ ] search
+        - [ ] edit
+    - [ ] stack
+      - [ ] static
+        - [ ] insert
+        - [ ] delete
+        - [ ] search
+        - [ ] edit
+      - [ ] dynamic
+        - [ ] insert
+        - [ ] delete
+        - [ ] search
+        - [ ] edit
+    - [ ] deque
+      - [ ] static
+        - [ ] insert
+        - [ ] delete
+        - [ ] search
+        - [ ] edit
+      - [ ] dynamic
+        - [ ] insert
+        - [ ] delete
+        - [ ] search
+        - [ ] edit
