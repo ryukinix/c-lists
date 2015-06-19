@@ -1,13 +1,10 @@
-# Project Name
+# C-lists =: some classes 
 
 This repository count a few codes made in ANSI C with implementation of lists subclass:
   * `queue`
   * `stack`
   * `deque`
 
-## Installation
-
-TODO: Describe the installation process
 
 ## Usage
 
