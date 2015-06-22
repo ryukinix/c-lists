@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "clear-pause.h"
 #define CLEAR "clear || cls"
 
 
@@ -43,7 +44,7 @@ typedef union {
     int integer;
     char character;
     float real;
-} metathing;
+} meta_thing;
 
 
 typedef enum {
@@ -54,9 +55,9 @@ typedef enum {
 
 
 typedef struct {
-    metathing data;
+    meta_thing data;
     identifier type;
-} metadata;
+} meta_data;
 
 
 typedef enum {
@@ -67,7 +68,7 @@ typedef enum {
 
 
 typedef struct {
-    metadata *elements;
+    meta_data *elements;
     id_state state;
     int last_index;
     int size;
@@ -105,8 +106,8 @@ static const char *state_strings[] = {"empty", "available", "full"};
 // methods of list
 int step(queue *q);
 int insert(queue *q);
-int search(queue *q, metathing thing);
-int erase(queue *q, metathing thing);
+int search(queue *q, meta_thing thing);
+int erase(queue *q, meta_thing thing);
 int edit(queue *q, int index);
 
 // aux-functions
@@ -119,12 +120,12 @@ void verify_state(queue *q);
 
 // in-out and terminal functions
 int  generate(const char *message);
-metathing new_thing(queue *q);
+meta_thing new_thing(queue *q);
 void insert_on(queue *q, int index);
-void print_element(metadata element);
+void print_element(meta_data element);
 void print_list(queue *q);
 void menu(queue *q);
-void clear(void);
+void clear_buffer(void);
 void pause(const char* msg);
 
 
@@ -159,7 +160,7 @@ void type_choose(queue *q) {
     printf("1.Int\n2.Char\n3.Float\n\n");
     printf("Enter a command: ");
     scanf("%d", &command);
-    clear();
+    clear_buffer();
 
     for (i= 0; i < q->size; i++) {
         //that verification it will usefull on the type change
@@ -183,7 +184,7 @@ void start(queue *q) {
     q->size = size;
 
     // alloc memory
-    q->elements = (metadata *) malloc(sizeof(metadata) * size);
+    q->elements = (meta_data *) malloc(sizeof(meta_data) * size);
     if (q->elements == NULL) {
         puts("Error with alloc memory! Try again with other size.");
         start(q);
@@ -251,16 +252,16 @@ int generate(const char *message) {
     puts(message);
     scanf("%d", &num);
     printf("\n");
-    clear();
+    clear_buffer();
 
     return num;
 }
 
 
-metathing new_thing(queue *q){
+meta_thing new_thing(queue *q){
     printf("Insert a thing: ");
     identifier type = q->elements[0].type;
-    metathing the_thing;
+    meta_thing the_thing;
 
     if (type == integer)
         scanf("%d", &the_thing.integer);
@@ -269,7 +270,7 @@ metathing new_thing(queue *q){
     else if (type == real)
         scanf("%f", &the_thing.real);
 
-    clear();
+    clear_buffer();
 
     return the_thing;
 }
@@ -277,7 +278,7 @@ metathing new_thing(queue *q){
 
 
 void insert_on(queue *q, int index) {
-    metathing the_thing = new_thing(q);
+    meta_thing the_thing = new_thing(q);
 
     q->elements[index].data = the_thing;
 }
@@ -317,7 +318,7 @@ int insert(queue *q) {
     return 0;
 }
 
-int search(queue *q, metathing thing) {
+int search(queue *q, meta_thing thing) {
     int i;
 
     for (i = 0; i < q->size; i++)
@@ -326,7 +327,7 @@ int search(queue *q, metathing thing) {
     return -1;
 }
 
-int erase(queue *q, metathing thing) {
+int erase(queue *q, meta_thing thing) {
     int index = search(q, thing);
 
     if (index != -1)
@@ -347,7 +348,7 @@ int edit(queue *q, int index) {
     return 0;
 }
 
-void print_element(metadata element) {
+void print_element(meta_data element) {
     identifier type = element.type;
 
     if (element.data.integer != -1) {
@@ -373,22 +374,10 @@ void print_list(queue *q) {
     printf("]\n");
 }
 
-// clear the stdin
-void clear(void) {
-    char c;
-    while (c = getchar() != '\n' && c != EOF )
-        continue;
-}
-
-// arg for a string: print and pause.
-void pause(const char* msg) {
-    printf("%s", msg);
-    clear();
-}
 
 void menu(queue *q) {
     int command, status;
-    metathing element;
+    meta_thing element;
 
     do {
         system(CLEAR);
@@ -411,7 +400,7 @@ void menu(queue *q) {
                 9.TypeChange\n\n");
         printf("Type a command: ");
         scanf("%d", &command);
-        clear();
+        clear_buffer();
 
         switch (command) {
             case 1:
