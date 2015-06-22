@@ -56,7 +56,7 @@ typedef enum {
 typedef struct {
     metathing data;
     identifier type;
-}metadata;
+} metadata;
 
 
 typedef enum {
@@ -105,12 +105,12 @@ static const char *state_strings[] = {"empty", "available", "full"};
 // methods of list
 int step(queue *q);
 int insert(queue *q);
-int search(queue *q, int num);
-int erase(queue *q, int num);
+int search(queue *q, metathing thing);
+int erase(queue *q, metathing thing);
 int edit(queue *q, int index);
 
 // aux-functions
-int  alloc_type(queue *q, int size);
+void  type_choose(queue *q, int size);
 void start(queue *q);
 void random_values(queue *q);
 void rearrange(queue *q);
@@ -119,8 +119,9 @@ void verify_state(queue *q);
 
 // in-out and terminal functions
 int  generate(const char *message);
-void new_element(queue *q, int index);
-void print_element(queue *q, int i);
+metathing new_thing(queue *q);
+void insert_on(queue *q, int index);
+void print_element(metadata element);
 void print_list(queue *q);
 void menu(queue *q);
 void clear(void);
@@ -152,31 +153,27 @@ int main(void) {
  */
 
 
-int alloc_type(queue *q, int size) {
-    int command;
+void type_choose(queue *q, int size) {
+    int command, i;
     puts("Choose a type for the list");
     printf("1.Int\n2.Char\n3.Float\n\n");
     printf("Enter a command: ");
     scanf("%d", &command);
     clear();
 
-    q->elements = (metadata *) malloc(sizeof(metadata) * size);
-
-    if (q->elements == NULL)
-        return -1;
-
-    for (int i = 0; i < size; i++) {
-       if (command = 1)
-	       q->elements[i].type = integer;
-       else if (command == 2)
-           q->elements[i].type = character;
-       else if (command = 3)
-           q->elements[i].type = real;
-       else        
-           alloc_type(q, size);
+    for (i= 0; i < size; i++) {
+        //that verification it will usefull on the type change
+        if (q->elements[i].data.integer == -1){
+            if (command == 1)
+               q->elements[i].type = integer;
+            else if (command == 2)
+               q->elements[i].type = character;
+            else if (command == 3)
+               q->elements[i].type = real;
+            else        
+               type_choose(q, size);
+        }
     }
-
-    return 0;
 }
 
 // iniciar q
@@ -185,8 +182,9 @@ void start(queue *q) {
     int size = generate("Enter a size: ");
     q->size = size;
 
-    // alloc and ask the type
-    if (alloc_type(q, size) == -1) {
+    // alloc memory
+    q->elements = (metadata *) malloc(sizeof(metadata) * size);
+    if (q->elements == NULL) {
         puts("Error with alloc memory! Try again with other size.");
         start(q);
     }
@@ -195,9 +193,13 @@ void start(queue *q) {
     q->last_index = -1;
     q->state = empty;
 
-    for (int i = 0; i < q->size; i++) {
+    int i;
+    for (i = 0; i < q->size; i++) {
         q->elements[i].data.integer = -1;
     }
+
+    //Ask the type to receive
+    type_choose(q, size);
 }
 
 void random_values(queue *q) {
@@ -254,18 +256,30 @@ int generate(const char *message) {
     return num;
 }
 
-void new_element(queue *q, int index) {
-    printf("Insert a value: ");
-    identifier type = q->elements[index].type;
+
+metathing new_thing(queue *q){
+    printf("Insert a thing: ");
+    identifier type = q->elements[0].type;
+    metathing the_thing;
 
     if (type == integer)
-        scanf("%d", &q->elements[index].data.integer);
+        scanf("%d", &the_thing.integer);
     else if (type == character)
-        scanf("%c", &q->elements[index].data.character);
+        scanf("%c", &the_thing.character);
     else if (type == real)
-        scanf("%f", &q->elements[index].data.real);
+        scanf("%f", &the_thing.real);
 
     clear();
+
+    return the_thing;
+}
+
+
+
+void insert_on(queue *q, int index) {
+    metathing the_thing = new_thing(q);
+
+    q->elements[index].data = the_thing;
 }
 
 void verify_state(queue *q) {
@@ -284,7 +298,7 @@ int step(queue *q) {
         return -1;
     } else {
         printf("Pop head: ");
-        print_element(q, 0);
+        print_element(q->elements[0]);
         del(q, 0);
     }
 
@@ -298,22 +312,22 @@ int insert(queue *q) {
         return -1;
 
     q->last_index++;
-    new_element(q, q->last_index);
+    insert_on(q, q->last_index);
 
     return 0;
 }
 
-int search(queue *q, int num) {
+int search(queue *q, metathing thing) {
     int i;
 
     for (i = 0; i < q->size; i++)
-        if (q->elements[i].data.integer == num)
+        if (q->elements[i].data.real == thing.real)
             return i;
     return -1;
 }
 
-int erase(queue *q, int num) {
-    int index = search(q, num);
+int erase(queue *q, metathing thing) {
+    int index = search(q, thing);
 
     if (index != -1)
         del(q, index);
@@ -328,21 +342,21 @@ int edit(queue *q, int index) {
     if (!(index >= 0 && index <= q->size))
         return -1;
 
-    new_element(q, index);
+    insert_on(q, index);
 
     return 0;
 }
 
-void print_element(queue *q, int i) {
-    identifier type = q->elements[i].type;
+void print_element(metadata element) {
+    identifier type = element.type;
 
-    if (q->elements[i].data.integer != -1) {
+    if (element.data.integer != -1) {
         if (type == integer)
-            printf(" (%d) ", q->elements[i].data.integer);
+            printf(" (%d) ", element.data.integer);
         else if (type == character)
-            printf(" (%c) ", q->elements[i].data.character);
+            printf(" (%c) ", element.data.character);
         else if (type == real)
-            printf(" (%.2f) ", q->elements[i].data.real);
+            printf(" (%.2f) ", element.data.real);
     } else {
         printf(" () ");
     }
@@ -355,7 +369,7 @@ void print_list(queue *q) {
 
     printf("Queue: [ ");
     for (i = 0; i < q->size; i++)
-        print_element(q, i);
+        print_element(q->elements[i]);
     printf("]\n");
 }
 
@@ -373,7 +387,8 @@ void pause(const char* msg) {
 }
 
 void menu(queue *q) {
-    int command, status, num_key;
+    int command, status;
+    metathing element;
 
     do {
         system(CLEAR);
@@ -382,7 +397,8 @@ void menu(queue *q) {
         printf("[type]: %s\n", type_strings[ (q->elements[0].type) ]);
         printf("[status]: %s\n\n", state_strings[q->state]);
         printf("\
-                0.Exit\n\
+                0.Exit\n\n\
+                Fundamental Methods:\n\
                 1.Insert\n\
                 2.Step\n\
                 3.Print_list\n\
@@ -411,26 +427,34 @@ void menu(queue *q) {
                 break;
 
             case 4:
-                num_key = new_element("Search for: ");
-                status = search(q, num_key);
+                printf("== Search ==\n");
+                element = new_thing(q);
+                status = search(q, element);
+                
+                // output
                 if (status != -1)
-                    printf("Found %d on %d index\n", num_key, status);
+                    printf("Found on index %d!\n", status);
                 else
                     printf("Error 404: Not found!\n");
                 break;
 
             case 5:
-                num_key = generate("Edit value in index: ");
-                status = edit(q, num_key);
+                element.integer = generate("Edit value in index: ");
+                status = edit(q, element.integer);
+                
                 if (status == -1)
                     printf("Index out of the range!\n");
+                
                 break;
 
             case 6:
-                num_key = generate("Erase element: ");
-                status = erase(q, num_key);
+                printf("== Erase element ==\n");
+                element = new_thing(q);
+                status = erase(q, element);
+                
+                // output
                 if (status != -1)
-                    printf("Deleted %d on %d\n index", num_key, status);
+                    printf("Found on index %d! Deleted!\n", status);
                 else
                     printf("Error 404: Not found!\n");
                 break;
