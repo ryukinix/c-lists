@@ -110,7 +110,7 @@ int erase(queue *q, metathing thing);
 int edit(queue *q, int index);
 
 // aux-functions
-void  type_choose(queue *q, int size);
+void type_choose(queue *q);
 void start(queue *q);
 void random_values(queue *q);
 void rearrange(queue *q);
@@ -153,7 +153,7 @@ int main(void) {
  */
 
 
-void type_choose(queue *q, int size) {
+void type_choose(queue *q) {
     int command, i;
     puts("Choose a type for the list");
     printf("1.Int\n2.Char\n3.Float\n\n");
@@ -161,7 +161,7 @@ void type_choose(queue *q, int size) {
     scanf("%d", &command);
     clear();
 
-    for (i= 0; i < size; i++) {
+    for (i= 0; i < q->size; i++) {
         //that verification it will usefull on the type change
         if (q->elements[i].data.integer == -1){
             if (command == 1)
@@ -171,7 +171,7 @@ void type_choose(queue *q, int size) {
             else if (command == 3)
                q->elements[i].type = real;
             else        
-               type_choose(q, size);
+               type_choose(q);
         }
     }
 }
@@ -199,7 +199,7 @@ void start(queue *q) {
     }
 
     //Ask the type to receive
-    type_choose(q, size);
+    type_choose(q);
 }
 
 void random_values(queue *q) {
@@ -394,6 +394,7 @@ void menu(queue *q) {
         system(CLEAR);
         verify_state(q);
         puts("Implementation of type queue in the class list!\n\n");
+        printf("[size]: %d\n", q->size);
         printf("[type]: %s\n", type_strings[ (q->elements[0].type) ]);
         printf("[status]: %s\n\n", state_strings[q->state]);
         printf("\
@@ -406,7 +407,8 @@ void menu(queue *q) {
                 5.Edit\n\
                 6.Erase\n\
                 7.Rearrange\n\
-                8.RandomValues\n\n");
+                8.RandomValues\n\
+                9.TypeChange\n\n");
         printf("Type a command: ");
         scanf("%d", &command);
         clear();
@@ -465,6 +467,9 @@ void menu(queue *q) {
 
             case 8:
                 random_values(q);
+                break;
+            case 9:
+                type_choose(q);
                 break;
 
             case 0:
