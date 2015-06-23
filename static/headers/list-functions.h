@@ -52,6 +52,14 @@ void del(list *l, int index) {
     rearrange(l);
 }
 
+//clear the list
+void clear_list(list *l){
+    int index;
+    for(index = 0; index < l->size; index++)
+        l->elements[index].data.integer = -1;
+    rearrange(l);
+}
+
 //verify the state of list
 void verify_state(list *l) {
     if (l->last_index == -1)
@@ -85,6 +93,18 @@ void type_choose(list *l) {
         }
     }
 }
+
+
+/* ===============================================
+ *
+ *             -*- Meta comment -*-
+ *
+ * Was adopted that the begin index to control is -1,
+ * Like this as the empty value too.
+ * 
+ * ===============================================
+ */
+
 
 void start(list *q) {
     // get the size of list
@@ -128,6 +148,6 @@ void random_values(list *l) {
             l->elements[i].data.real = (rand() % 100 / ( (rand () % 10) + 1));
     }
     
-    l->last_index = i + 1;
+    l->last_index = i - 1;
 }
 
