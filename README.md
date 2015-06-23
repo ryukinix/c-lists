@@ -45,10 +45,10 @@ MIT
         - [ ] edit
     - [ ] stack
       - [ ] static
-        - [ ] insert
-        - [ ] delete
-        - [ ] search
-        - [ ] edit
+        - [X] insert
+        - [X] delete
+        - [X] search
+        - [X] edit
       - [ ] dynamic
         - [ ] insert
         - [ ] delete
