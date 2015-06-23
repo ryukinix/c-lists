@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 // clear the stdin
 void clear_buffer(void) {
     char c;
