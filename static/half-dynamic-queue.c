@@ -32,18 +32,6 @@
 #include "headers/list-functions.h"
 
 
-/* =============================================
- *
- *             -*- Meta comment -*-
- *
- * Foi convencionado que o indice de início é -1,
- * Assim como também o espaço vazio.
- * 
- * ============================================
- */
-
-
-
 /* ================================================
  *
  *  -*- Definition of all main queue functions  -*-
@@ -71,6 +59,7 @@ int step(list *queue) {
     } else {
         printf("Pop head: ");
         print_element(queue->elements[0]);
+        puts("");
         del(queue, 0);
     }
 
@@ -143,7 +132,8 @@ void menu(list *queue) {
                 6.Erase\n\
                 7.Rearrange\n\
                 8.RandomValues\n\
-                9.TypeChange\n\n");
+                9.TypeChange\n\
+                10.ClearList\n\n");
         printf("Type a command: ");
         scanf("%d", &command);
         clear_buffer();
@@ -206,7 +196,9 @@ void menu(list *queue) {
             case 9:
                 type_choose(queue);
                 break;
-
+            case 10:
+                clear_list(queue);
+                break;
             case 0:
                 printf("Leaving the universe...\n");
                 break;
