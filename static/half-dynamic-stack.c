@@ -197,7 +197,7 @@ void menu(list *stack) {
                 type_choose(stack);
                 break;
             case 10:
-                clear_list(queue);
+                clear_list(stack);
                 break;
             case 0:
                 printf("Leaving the universe...\n");
