@@ -6,30 +6,30 @@
  *
  *       Filename:  half-dynamic-queue.c
  *
- *    Description:  A queue whose you can choose the type
+ *    Description:  A queue whose you can choose the type and your size
  *
  *         Author:  Manoel Vilela
  *        Contact:  manoel_vilela@engineer.com
  *   Organization:  UFPA
  *
  * =====================================================================================
-**/
+ */
 
 // standard headers
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-
-// my headers
-#include "clear-pause.h" 
-#include "meta-type.h"
-#include "list-type.h"
-#include "declarations.h"
-#include "meta-functions.h"
-#include "list-functions.h"
+#include <string.h>
 
 // my macros
 #define CLEAR "clear || cls"
+#define LIST_TYPE "Queue"
+
+// my headers
+#include "headers/clear-pause.h" 
+#include "headers/meta-type.h"
+#include "headers/list-type.h"
+#include "headers/meta-functions.h"
+#include "headers/list-functions.h"
 
 
 /* =============================================
@@ -44,71 +44,12 @@
 
 
 
-/* ===================================================================
- *
- *    -*-  A resume of queue struct    -*-
- *  
- *     char *type := the type of the user choose
- * int last_index := index of vector whose is used to control i/o
- *      int state := {0:empty, 1:available, 2:full}
- *       int size := the lenght of queue
- *
- * ====================================================================
- */
-
-
-
-/* ==========================================
- *
- *  -*-       THE BIG MAIN CODE           -*-
- *
- * ==========================================
- */
-
-int main(void) {
-    list q;
-
-    start(&q);
-    menu(&q);
-
-    return 0;
-}
-
-
-/* ==========================================
+/* ================================================
  *
  *  -*- Definition of all main queue functions  -*-
  *
- * ==========================================
+ * ================================================
  */
-
-
-
-// iniciar q
-void start(list *q) {
-    // get the size of list
-    int size = generate("Enter a size: ");
-    q->size = size;
-
-    // alloc memory
-    q->elements = (meta_data *) malloc(sizeof(meta_data) * size);
-    if (q->elements == NULL) {
-        puts("Error with alloc memory! Try again with other size.");
-        start(q);
-    }
-
-    // start the initial values
-    q->last_index = -1;
-    q->state = empty;
-
-    int i;
-    for (i = 0; i < q->size; i++) {
-        q->elements[i].data.integer = -1;
-    }
-
-    //Ask the type to receive
-    type_choose(q);
-}
 
 
 // generate a int number with a message for stdout
@@ -124,13 +65,13 @@ int generate(const char *message) {
 
 
 // step the queue (remove the head)
-int step(list *q) {
-    if (q->state == empty) {
+int step(list *queue) {
+    if (queue->state == empty) {
         return -1;
     } else {
         printf("Pop head: ");
-        print_element(q->elements[0]);
-        del(q, 0);
+        print_element(queue->elements[0]);
+        del(queue, 0);
     }
 
     return 0;
@@ -138,61 +79,62 @@ int step(list *q) {
 
 
 // insert a value in a tail of queue;
-int insert(list *q) {
-    if (q->state == full)
+int insert(list *queue) {
+    if (queue->state == full)
         return -1;
 
-    q->last_index++;
-    insert_on(q, q->last_index);
+    queue->last_index++;
+    insert_on(queue, queue->last_index);
 
     return 0;
 }
 
-int search(list *q, something thing) {
+int search(list *queue, something thing) {
     int i;
 
-    for (i = 0; i < q->size; i++)
-        if (q->elements[i].data.real == thing.real)
+    for (i = 0; i < queue->size; i++)
+        if (queue->elements[i].data.real == thing.real)
             return i;
     return -1;
 }
 
-int erase(list *q, something thing) {
-    int index = search(q, thing);
+int erase(list *queue, something thing) {
+    int index = search(queue, thing);
 
     if (index != -1)
-        del(q, index);
+        del(queue, index);
     else
         return -1;
 
     return index;
 }
 
-int edit(list *q, int index) {
+int edit(list *queue, int index) {
     // verify if index is not do the pesar of violate the lenght of vector
-    if (!(index >= 0 && index <= q->size))
+    if (!(index >= 0 && index <= queue->size))
         return -1;
 
-    insert_on(q, index);
+    insert_on(queue, index);
 
     return 0;
 }
 
 
-void menu(list *q) {
+void menu(list *queue) {
     int command, status;
     something element;
 
     do {
         system(CLEAR);
-        verify_state(q);
+        verify_state(queue);
         puts("Implementation of type queue in the class list!\n\n");
-        printf("[size]: %d\n", q->size);
-        printf("[type]: %s\n", type_strings[ (q->elements[0].type) ]);
-        printf("[status]: %s\n\n", state_strings[q->state]);
+        printf("[subclass]: %s\n", queue->subclass);
+        printf("[size]: %d\n", queue->size);
+        printf("[head-type]: %s\n", type_strings[ (queue->elements[0].type) ]);
+        printf("[status]: %s\n\n", state_strings[queue->state]);
         printf("\
-                0.Exit\n\n\
-                Fundamental Methods:\n\
+                --> 0.Exit\n\n\
+         ===[>Fundamental Methods<]===\n\n\
                 1.Insert\n\
                 2.Step\n\
                 3.Print_list\n\
@@ -208,23 +150,23 @@ void menu(list *q) {
 
         switch (command) {
             case 1:
-                status = insert(q);
+                status = insert(queue);
                 if (status == -1) puts("Full queue!");
                 break;
 
             case 2:
-                status = step(q);
+                status = step(queue);
                 if (status == -1) puts("Empty queue!");
                 break;
 
             case 3:
-                print_list(q);
+                print_list(queue);
                 break;
 
             case 4:
                 printf("== Search ==\n");
-                element = new_thing(q->elements[0].type);
-                status = search(q, element);
+                element = new_thing(queue->elements[0].type);
+                status = search(queue, element);
                 
                 // output
                 if (status != -1)
@@ -235,7 +177,7 @@ void menu(list *q) {
 
             case 5:
                 element.integer = generate("Edit value in index: ");
-                status = edit(q, element.integer);
+                status = edit(queue, element.integer);
                 
                 if (status == -1)
                     printf("Index out of the range!\n");
@@ -244,8 +186,8 @@ void menu(list *q) {
 
             case 6:
                 printf("== Erase element ==\n");
-                element = new_thing(q->elements[0].type);
-                status = erase(q, element);
+                element = new_thing(queue->elements[0].type);
+                status = erase(queue, element);
                 
                 // output
                 if (status != -1)
@@ -255,14 +197,14 @@ void menu(list *q) {
                 break;
 
             case 7:
-                rearrange(q);
+                rearrange(queue);
                 break;
 
             case 8:
-                random_values(q);
+                random_values(queue);
                 break;
             case 9:
-                type_choose(q);
+                type_choose(queue);
                 break;
 
             case 0:
@@ -277,3 +219,22 @@ void menu(list *q) {
         pause("Press enter to continue...");
     }while(command != 0);
 }
+
+
+/* ==========================================
+ *
+ *  -*-       THE BIG MAIN CODE           -*-
+ *
+ * ==========================================
+ */
+
+int main(void) {
+    list queue;
+    strcpy(queue.subclass, LIST_TYPE);
+
+    start(&queue);
+    menu(&queue);
+
+    return 0;
+}
+
