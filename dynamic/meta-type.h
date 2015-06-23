@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 /* ==========================================================
  *
  *  -*- All structures definition of meta type are below  -*-
@@ -25,5 +23,4 @@ typedef struct {
     something data;
     identifier type;
 } meta_data;
-
 
