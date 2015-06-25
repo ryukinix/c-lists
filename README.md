@@ -28,7 +28,7 @@ For now, after hours, I finally i did can implement a basic control system for a
 
 ## License
 
-MIT
+GPLv3
 
 ## Roadmap
   - [ ] make a system control type and your fundamental methods for the three lists types:
