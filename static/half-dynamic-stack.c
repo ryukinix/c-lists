@@ -82,7 +82,7 @@ int search(list *stack, something thing) {
     int i;
 
     for (i = 0; i < stack->size; i++)
-        if (stack->elements[i].data.real == thing.real)
+        if (union_comparision(stack->elements[i].data, thing))
             return i;
     return -1;
 }
