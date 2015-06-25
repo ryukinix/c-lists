@@ -52,8 +52,8 @@ int generate(const char *message) {
 }
 
 
-// step the queue (remove the head)
-int step(list *queue) {
+// pop the queue (remove the head)
+int pop(list *queue) {
     if (queue->state == empty) {
         return -1;
     } else {
@@ -82,7 +82,7 @@ int search(list *queue, something thing) {
     int i;
 
     for (i = 0; i < queue->size; i++)
-        if (queue->elements[i].data.real == thing.real)
+        if (union_comparision(queue->elements[i].data, thing))
             return i;
     return -1;
 }
@@ -125,7 +125,7 @@ void menu(list *queue) {
                 --> 0.Exit\n\n\
          ===[>Fundamental Methods<]===\n\n\
                 1.Insert\n\
-                2.Step\n\
+                2.Pop\n\
                 3.Print_list\n\
                 4.Search\n\
                 5.Edit\n\
@@ -145,7 +145,7 @@ void menu(list *queue) {
                 break;
 
             case 2:
-                status = step(queue);
+                status = pop(queue);
                 if (status == -1) puts("Empty queue!");
                 break;
 

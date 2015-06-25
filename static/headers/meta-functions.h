@@ -38,12 +38,12 @@ something new_thing(identifier type){
     return the_thing;
 }
 
-int meta_comparision(meta_data x, meta_data y){
-    if (x.data.integer == y.data.integer)
+int union_comparision(something x, something y){
+    if (x.integer == y.integer)
         return true;
-    else if (x.data.character == y.data.character)
+    else if (x.character == y.character)
         return true;
-    else if (x.data.real == y.data.real)
+    else if (x.real == y.real)
         return true;
 
     return false;
