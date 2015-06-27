@@ -21,7 +21,6 @@ typedef struct {
     char subclass[10];
     meta_data *elements;
     id_state state;
-    int first_index;
     int last_index;
     int size;
 } list;
