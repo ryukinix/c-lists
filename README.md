@@ -56,10 +56,10 @@ GPLv3
         - [ ] edit
     - [ ] deque
       - [ ] static
-        - [ ] insert
-        - [ ] delete
-        - [ ] search
-        - [ ] edit
+        - [X] insert
+        - [X] delete
+        - [X] search
+        - [X] edit
       - [ ] dynamic
         - [ ] insert
         - [ ] delete
