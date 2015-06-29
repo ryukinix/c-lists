@@ -4,7 +4,7 @@
  *                      Copyright 2015 Manoel Vilela
  *
  *
- *       Filename:  half-dynamic-queue.c
+ *       Filename:  static-queue.c
  *
  *    Description:  A queue whose you can choose the type and your size
  *

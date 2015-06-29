@@ -4,7 +4,7 @@
  *                      Copyright 2015 Manoel Vilela
  *
  *
- *       Filename:  half-dynamic-deque.c
+ *       Filename:  static-deque.c
  *
  *    Description:  A deque whose you can choose the type and your size
  *

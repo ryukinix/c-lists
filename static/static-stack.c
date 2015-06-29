@@ -4,7 +4,7 @@
  *                      Copyright 2015 Manoel Vilela
  *
  *
- *       Filename:  half-dynamic-stack.c
+ *       Filename:  static-stack.c
  *
  *    Description:  A stack whose you can choose the type and your size
  *
