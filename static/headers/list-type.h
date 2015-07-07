@@ -1,8 +1,13 @@
-/* ================================================
+/* ===================================================================
  *
- *  -*- All structures definition are below  -*-
+ *                 -*-  A resume of a static list struct    -*-
  *
- *=================================================
+ * const char *subclass := "queue" || "stack" || "deque"
+ *  meta_data *elements := {something data, identifier type}
+ *       id_state state := {0:empty, 1:available, 2:full}
+ *       int last_index := index of vector whose is used to control i/o
+ *
+ * ====================================================================
  */
 
 
@@ -25,18 +30,4 @@ typedef struct {
     int size;
 } list;
 
-
-/* ===================================================================
- *
- *                 -*-  A resume of a list struct    -*-
- * const char *subclass := "queue" || "stack" || "deque"
- *  meta_data *elements := {something data, identifier type}
- *       id_state state := {0:empty, 1:available, 2:full}
- *      int first_index := index of vector whose is used to control i/o
- *       int last_index := index of vector whose is used to control i/o
- *             int size := the lenght of queue
- *            int state := {0:empty, 1:available, 2:full}
- *
- * ====================================================================
- */
 
