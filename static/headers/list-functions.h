@@ -106,29 +106,29 @@ void type_choose(list *l) {
  */
 
 
-void start(list *q) {
+void start(list *l) {
     // get the size of list
     int size = generate("Enter a size: ");
-    q->size = size;
+    l->size = size;
 
     // alloc memory
-    q->elements = (meta_data *) malloc(sizeof(meta_data) * size);
-    if (q->elements == NULL) {
+    l->elements = (meta_data *) malloc(sizeof(meta_data) * size);
+    if (l->elements == NULL) {
         puts("Error with alloc memory! Try again with other size.");
-        start(q);
+        start(l);
     }
 
     // start the initial values
-    q->last_index = -1;
-    q->state = empty;
+    l->last_index = -1;
+    l->state = empty;
 
     int i;
-    for (i = 0; i < q->size; i++) {
-        q->elements[i].data.integer = -1;
+    for (i = 0; i < l->size; i++) {
+        l->elements[i].data.integer = -1;
     }
 
     //Ask the type to receive
-    type_choose(q);
+    type_choose(l);
 }
 
 
