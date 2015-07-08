@@ -7,16 +7,16 @@
 
 #include <stdbool.h>
 
-void print_element(meta_data element) {
-    identifier type = element.type;
+void print_element(meta_data meta) {
+    identifier type = meta.type;
 
-    if (element.data.integer != -1) {
+    if (meta.data.integer != -1) {
         if (type == integer)
-            printf(" (%d) ", element.data.integer);
+            printf(" (%d) ", meta.data.integer);
         else if (type == character)
-            printf(" (%c) ", element.data.character);
+            printf(" (%c) ", meta.data.character);
         else if (type == real)
-            printf(" (%.2f) ", element.data.real);
+            printf(" (%.2f) ", meta.data.real);
     } else {
         printf(" () ");
     }
@@ -49,8 +49,8 @@ int union_comparision(something x, something y){
     return false;
 }
 
-/* // conflicts with the definition in list-type
-void type_choose(meta_data *element){
+
+void type_choose(meta_data *meta){
     int command;  
     
     puts("Insert the type that you wish attribute!");
@@ -62,18 +62,17 @@ void type_choose(meta_data *element){
 
     switch(command){
         case 1:
-            element->type = integer;
+            meta->type = integer;
             break;
         case 2:
-            element->type = character;
+            meta->type = character;
             break;
         case 3:
-            element->type = real;
+            meta->type = real;
             break;
         default:
             puts("Invalid option! Try again!");
-            type_choose(element);
+            type_choose(meta);
             break;       
     }  
 }
-*/
