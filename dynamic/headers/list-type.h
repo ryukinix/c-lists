@@ -1,8 +1,13 @@
-/* ================================================
+/* ===================================================================
  *
- *  -*- All structures definition are below  -*-
+ *                 -*-  A resume of a dynamic list struct    -*-
  *
- *=================================================
+ * const char *subclass := "queue" || "stack" || "deque"
+ *       node *elements := linked list
+ *       id_state state := {0:empty, 1:available, 2:full}
+ *             int size := the lenght of queue
+ *
+ * ====================================================================
  */
 
 
@@ -18,30 +23,16 @@ typedef enum {
 
 
 typedef struct {
-    meta_data element;
+    meta_data meta;
     node *next;
+    node *back;
 } node;
 
 typedef struct {
     char subclass[10];
     node *elements;
     id_state state;
-    int last_index;
     int size;
 } list;
 
-
-/* ===================================================================
- *
- *                 -*-  A resume of a list struct    -*-
- * const char *subclass := "queue" || "stack" || "deque"
- *  meta_data *elements := {something data, identifier type}
- *       id_state state := {0:empty, 1:available, 2:full}
- *      int first_index := index of vector whose is used to control i/o
- *       int last_index := index of vector whose is used to control i/o
- *             int size := the lenght of queue
- *            int state := {0:empty, 1:available, 2:full}
- *
- * ====================================================================
- */
 
