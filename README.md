@@ -32,37 +32,37 @@ For now, after hours, I finally i did can implement a basic control system for a
 GPLv3
 
 ## Roadmap
-  - [ ] make a system control type and your fundamental methods for the three lists types:
-    - [ ] queue
-      - [X] static
-        - [X] insert
-        - [X] delete
-        - [X] search
-        - [X] edit
-      - [ ] dynamic
-        - [ ] insert
-        - [ ] delete
-        - [ ] search
-        - [ ] edit
-    - [ ] stack
-      - [ ] static
-        - [X] insert
-        - [X] delete
-        - [X] search
-        - [X] edit
-      - [ ] dynamic
-        - [ ] insert
-        - [ ] delete
-        - [ ] search
-        - [ ] edit
-    - [ ] deque
-      - [ ] static
-        - [X] insert
-        - [X] delete
-        - [X] search
-        - [X] edit
-      - [ ] dynamic
-        - [ ] insert
-        - [ ] delete
-        - [ ] search
-        - [ ] edit
+  - [X] make a system control type
+  - [ ] queue
+    - [X] static
+      - [X] insert
+      - [X] delete
+      - [X] search
+      - [X] edit
+    - [ ] dynamic
+      - [ ] insert
+      - [ ] delete
+      - [ ] search
+      - [ ] edit
+  - [ ] stack
+    - [ ] static
+      - [X] insert
+      - [X] delete
+      - [X] search
+      - [X] edit
+    - [ ] dynamic
+      - [ ] insert
+      - [ ] delete
+      - [ ] search
+      - [ ] edit
+  - [ ] deque
+    - [ ] static
+      - [X] insert
+      - [X] delete
+      - [X] search
+      - [X] edit
+    - [ ] dynamic
+      - [ ] insert
+      - [ ] delete
+      - [ ] search
+      - [ ] edit
