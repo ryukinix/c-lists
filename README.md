@@ -5,6 +5,7 @@ This repository count a few codes made in ANSI C with implementation of lists su
   * `stack`
   * `deque`
 
+The implementation was divised in "static" and "dynamic"; the static implementation uses just vectors and dynamic use linkeds lists.
 
 ## Usage
 
