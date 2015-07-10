@@ -18,14 +18,24 @@
 
 // walk to a next node
 node* walk_foward(node *n){
-    n = n->next
+    n = n->next;
     return n;
 }
 node* walk_foward(node *n){
-    n = n->back
+    n = n->back;
     return n;
 }
 
+void start_node(node *n){
+    // allocation of memory 
+    n = (node *) malloc(sizeof(node));
+    
+    // type choose and input of data
+    type_choose(n->meta);
+    n->meta.data = new_thing(n->meta.type);
+
+    n->next = NULL;
+}
 // walk until the n node of the linked list
 node* walk_until(node *head, int index){
     int i;
@@ -55,14 +65,6 @@ void print_list(list *l) {
         n = walk_foward(n);
     }
     printf("]\n");
-}
-
-
-// insert on index
-void insert_on(list *l, int index) {
-    something the_thing = new_thing(l->elements->type);
-    walk_until(l, index);
-    l->elements.n.data = the_thing;
 }
 
 
