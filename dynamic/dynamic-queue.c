@@ -6,7 +6,7 @@
  *
  *       Filename:  dynamic-queue.c
  *
- *    Description:  A queue whose you can choose the type and your size
+ *    Description:  A queue dynamic for any type
  *
  *         Author:  Manoel Vilela
  *        Contact:  manoel_vilela@engineer.com
@@ -39,17 +39,6 @@
  */
 
 
-// generate a int number with a message for stdout
-int generate(const char *message) {
-    int num;
-    puts(message);
-    scanf("%d", &num);
-    printf("\n");
-    clear_buffer();
-
-    return num;
-}
-
 
 // pop the queue (remove the head)
 int pop(list *queue) {
@@ -57,7 +46,7 @@ int pop(list *queue) {
         return -1;
     } else {
         printf("Pop head: ");
-        print_element(queue->elements[0]);
+        print_element(queue->elements->meta);
         puts("");
         del(queue, 0);
     }
@@ -68,11 +57,10 @@ int pop(list *queue) {
 
 // insert a value in a tail of queue;
 int insert(list *queue) {
-    if (queue->state == full)
-        return -1;
+    /*
+        Reformulate that code
 
-    queue->last_index++;
-    insert_on(queue, queue->last_index);
+    */
 
     return 0;
 }
@@ -118,21 +106,19 @@ void menu(list *queue) {
         puts("Implementation of type queue in the class list!\n\n");
         printf("[subclass]: %s\n", queue->subclass);
         printf("[size]: %d\n", queue->size);
-        printf("[head-type]: %s\n", type_strings[ (queue->elements[0].type) ]);
+        printf("[head-type]: %s\n", type_strings[ (queue->elements->meta.type) ]);
         printf("[status]: %s\n\n", state_strings[queue->state]);
         printf("\
                 --> 0.Exit\n\n\
          ===[>Fundamental Methods<]===\n\n\
                 1.Insert\n\
                 2.Pop\n\
-                3.Print_list\n\
+                3.Print\n\
                 4.Search\n\
                 5.Edit\n\
                 6.Erase\n\
-                7.Rearrange\n\
-                8.RandomValues\n\
-                9.TypeChange\n\
-                10.ClearList\n\n");
+                7.RandomValues\n\
+                8.ClearList\n\n");
         printf("Type a command: ");
         scanf("%d", &command);
         clear_buffer();
@@ -154,7 +140,7 @@ void menu(list *queue) {
 
             case 4:
                 printf("== Search ==\n");
-                element = new_thing(queue->elements[0].type);
+                element = new_thing(queue->elements.type);
                 status = search(queue, element);
                 
                 // output
@@ -184,18 +170,10 @@ void menu(list *queue) {
                 else
                     printf("Error 404: Not found!\n");
                 break;
-
             case 7:
-                rearrange(queue);
-                break;
-
-            case 8:
                 random_values(queue);
                 break;
-            case 9:
-                type_choose(queue);
-                break;
-            case 10:
+            case 8:
                 clear_list(queue);
                 break;
             case 0:
