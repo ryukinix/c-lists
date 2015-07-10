@@ -209,7 +209,7 @@ void menu(list *deque) {
     do {
         system(CLEAR);
         verify_state(deque);
-        puts("Implementation of type deque in the class list!\n\n");
+        puts("Implementation of a static deque as a subclass of the list type!\n\n");
         printf("[subclass]: %s\n", deque->subclass);
         printf("[size]: %d\n", deque->size);
         printf("[head-type]: %s\n", type_strings[ (deque->elements[0].type) ]);
