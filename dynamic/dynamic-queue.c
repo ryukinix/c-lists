@@ -66,31 +66,28 @@ int insert(list *queue) {
 }
 
 int search(list *queue, something thing) {
-    int i;
+    /*
+        Reformulate that code
 
-    for (i = 0; i < queue->size; i++)
-        if (union_comparision(queue->elements[i].data, thing))
-            return i;
+    */
+
     return -1;
 }
 
-int erase(list *queue, something thing) {
-    int index = search(queue, thing);
+int erase(list *queue, something thing) {    
+    /*
+        Reformulate that code
 
-    if (index != -1)
-        del(queue, index);
-    else
-        return -1;
+    */
 
     return index;
 }
 
 int edit(list *queue, int index) {
-    // verify if index is not do the pesar of violate the lenght of vector
-    if (!(index >= 0 && index <= queue->size))
-        return -1;
+    /*
+        Reformulate that code
 
-    insert_on(queue, index);
+    */
 
     return 0;
 }
@@ -103,7 +100,7 @@ void menu(list *queue) {
     do {
         system(CLEAR);
         verify_state(queue);
-        puts("Implementation of type queue in the class list!\n\n");
+        puts("Implementation of a dynamic queue as subclass the list!\n\n");
         printf("[subclass]: %s\n", queue->subclass);
         printf("[size]: %d\n", queue->size);
         printf("[head-type]: %s\n", type_strings[ (queue->elements->meta.type) ]);
@@ -140,35 +137,24 @@ void menu(list *queue) {
 
             case 4:
                 printf("== Search ==\n");
-                element = new_thing(queue->elements.type);
-                status = search(queue, element);
-                
-                // output
-                if (status != -1)
-                    printf("Found on index %d!\n", status);
-                else
-                    printf("Error 404: Not found!\n");
-                break;
+                /*
+                    Reformulate that code
+
+                */
 
             case 5:
                 element.integer = generate("Edit value in index: ");
-                status = edit(queue, element.integer);
-                
-                if (status == -1)
-                    printf("Index out of the range!\n");
-                
-                break;
+                /*
+                    Reformulate that code
 
+                */
+                break;
             case 6:
                 printf("== Erase element ==\n");
-                element = new_thing(queue->elements[0].type);
-                status = erase(queue, element);
-                
-                // output
-                if (status != -1)
-                    printf("Found on index %d! Deleted!\n", status);
-                else
-                    printf("Error 404: Not found!\n");
+                /*
+                    Reformulate that code
+
+                */
                 break;
             case 7:
                 random_values(queue);
