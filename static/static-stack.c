@@ -116,7 +116,7 @@ void menu(list *stack) {
     do {
         system(CLEAR);
         verify_state(stack);
-        puts("Implementation of type stack in the class list!\n\n");
+        puts("Implementation of a static stack as a subclass of the list type!\n\n");
         printf("[subclass]: %s\n", stack->subclass);
         printf("[size]: %d\n", stack->size);
         printf("[head-type]: %s\n", type_strings[ (stack->elements[0].type) ]);

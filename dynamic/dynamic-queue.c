@@ -100,7 +100,7 @@ void menu(list *queue) {
     do {
         system(CLEAR);
         verify_state(queue);
-        puts("Implementation of a dynamic queue as subclass the list!\n\n");
+        puts("Implementation of a static queue as a subclass of the list type!\n\n");
         printf("[subclass]: %s\n", queue->subclass);
         printf("[size]: %d\n", queue->size);
         printf("[head-type]: %s\n", type_strings[ (queue->elements->meta.type) ]);
