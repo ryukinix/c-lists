@@ -47,8 +47,9 @@ int pop(list *queue) {
     } else {
         printf("Pop head: ");
         print_element(queue->elements->meta);
-        puts("");
-        del(queue, 0);
+        printf("\n");
+        free(queue->elements);
+        queue->elements = queue->elements->next;
     }
 
     return 0;
@@ -56,13 +57,11 @@ int pop(list *queue) {
 
 
 // insert a value in a tail of queue;
-int insert(list *queue) {
-    /*
-        Reformulate that code
-
-    */
-
-    return 0;
+void insert(list *queue) {
+    node *old_tail = walk_to_tail(queue->elements);
+    node *new_tail = old_tail->next;
+    start_node(new_tail);
+    new_tail->back = old_tail;
 }
 
 int search(list *queue, something thing) {
@@ -95,7 +94,7 @@ int edit(list *queue, int index) {
 
 void menu(list *queue) {
     int command, status;
-    something element;
+    meta_data element;
 
     do {
         system(CLEAR);
