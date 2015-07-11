@@ -67,13 +67,6 @@ void print_list(list *l) {
     printf("]\n");
 }
 
-
-// delete some element
-void del(list *l, int index){
-    walk_until(l, index);
-    free(l->elements);
-}
-
 // clear the list
 void clear_list(list *l){
     l->size = 0;
