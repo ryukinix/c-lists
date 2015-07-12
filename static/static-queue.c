@@ -87,7 +87,7 @@ int search(list *queue, something thing) {
     return -1;
 }
 
-int erase(list *queue, something thing) {
+int remove(list *queue, something thing) {
     int index = search(queue, thing);
 
     if (index != -1)
@@ -129,7 +129,7 @@ void menu(list *queue) {
                 3.Print_list\n\
                 4.Search\n\
                 5.Edit\n\
-                6.Erase\n\
+                6.Remove\n\
                 7.Rearrange\n\
                 8.RandomValues\n\
                 9.TypeChange\n\
@@ -175,9 +175,9 @@ void menu(list *queue) {
                 break;
 
             case 6:
-                printf("== Erase element ==\n");
+                printf("== Remove element ==\n");
                 element = new_thing(queue->elements[0].type);
-                status = erase(queue, element);
+                status = remove(queue, element);
                 
                 // output
                 if (status != -1)
