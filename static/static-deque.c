@@ -180,7 +180,7 @@ int search(list *deque, something thing) {
     return -1;
 }
 
-int erase(list *deque, something thing) {
+int remove(list *deque, something thing) {
     int index = search(deque, thing);
 
     if (index != -1)
@@ -222,7 +222,7 @@ void menu(list *deque) {
                 3.Print_list\n\
                 4.Search\n\
                 5.Edit\n\
-                6.Erase\n\
+                6.Remove\n\
                 7.Rearrange\n\
                 8.RandomValues\n\
                 9.TypeChange\n\
@@ -268,9 +268,9 @@ void menu(list *deque) {
                 break;
 
             case 6:
-                printf("== Erase element ==\n");
+                printf("== remove element ==\n");
                 element = new_thing(deque->elements[0].type);
-                status = erase(deque, element);
+                status = remove(deque, element);
                 
                 // output
                 if (status != -1)
