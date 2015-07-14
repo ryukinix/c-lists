@@ -99,7 +99,7 @@ void erase(list *queue, something thing) {
 
 void edit(list *queue, int index) {
     /*
-        Reformulate that code
+        Reformulate this code
 
     */
 
