@@ -38,6 +38,7 @@ void start_node(node *n){
 
     n->next = NULL;
 }
+
 // walk until the n node of the linked list
 node* walk_until(node *head, int index){
     int i;
@@ -57,6 +58,7 @@ node* walk_to_tail(node *head){
 
 void remove(node **some_node){
     free(some_node);
+    // maybe here's the error.
     some_node = (*some_node)->next;
 }
 
