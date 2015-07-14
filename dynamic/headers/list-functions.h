@@ -16,12 +16,12 @@
  * =============================================
  */
 
-// walk to a next node
-node* walk_foward(node *n){
+node* walk_forward(node *n){
     n = n->next;
     return n;
 }
-node* walk_reward(node *n){
+
+node* walk_backwards(node *n){
     n = n->back;
     return n;
 }
@@ -36,12 +36,13 @@ void start_node(node *n){
 
     n->next = NULL;
 }
+
 // walk until the n node of the linked list
 node* walk_until(node *head, int index){
     int i;
     node *n = head;
     for (i = 0; i < index && n != NULL; i++)
-        n = walk_foward(n);
+        n = walk_forward(n);
     return n;
 }
 
@@ -50,13 +51,16 @@ node* walk_to_tail(node *head){
 
     int i;
     for (i = 0; n != NULL; i++)
-        n = walk_foward(n);
+        n = walk_forward(n);
     return n;
 }
 
 void remove_node(node **some_node){
-    free(some_node);
-    some_node = (**some_node).next;  // bad pointer manipulation; wtf?!
+    // erasing the reference to the pointer?
+    //free(some_node);
+
+    free(*some_node);
+    *some_node = (*some_node)->next;
 }
 
 // END
@@ -69,7 +73,7 @@ void print_list(list *l) {
     printf("%s: [ ", l->subclass);
     for (i = 0; l->elements != NULL; i++){
         print_element(n->meta);
-        n = walk_foward(n);
+        n = walk_forward(n);
     }
     printf("]\n");
 }
@@ -118,7 +122,7 @@ void random_values(list *l) {
             n->meta.data.character = 'a' + rand() % 26;
         else if (type == real)
             n->meta.data.real = (rand() % 100 / ( (rand () % 10) + 1));
-        n = walk_foward(n);
+        n = walk_forward(n);
     }
 }
 
