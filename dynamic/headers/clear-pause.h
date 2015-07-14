@@ -1,9 +1,9 @@
 #define CLEAR "clear || cls"
 
 // clear the stdin
-void clear_buffer(void) {
+void clear_buffer (void) {
     char c;
-    while (c = getchar() != '\n' && c != EOF )
+    while ( (c = getchar() != '\n') &&  (c != EOF) )
         continue;
 }
 

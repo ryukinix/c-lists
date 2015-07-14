@@ -41,7 +41,7 @@
 
 
 // pop the queue (remove the head)
-void pop(list *queue) {
+int pop(list *queue) {
     if (queue->state == empty) {
         return -1;
     } else {
@@ -50,10 +50,9 @@ void pop(list *queue) {
         printf("\n");
         free(queue->elements);
         queue->elements = queue->elements->next;
+        queue->size -= 1;
     }
-
-    queue->size -= 1;
-
+    return 0;
 }
 
 
@@ -69,10 +68,10 @@ void insert(list *queue) {
 void search(list *queue, something thing) {
     node *n = queue->elements;
     int index = 0;
-    while(n->elements != NULL){
-        if (union_comparision(n->elements->meta.data, thing)){
+    while(n != NULL){
+        if (union_comparision(n->meta.data, thing)){
             printf("On index %d was found: ", index);
-            print_element(n->elements->meta);
+            print_element(n->meta);
             printf("\n");
         }
         index++;
@@ -83,18 +82,17 @@ void search(list *queue, something thing) {
 void erase(list *queue, something thing) {    
     node *n = queue->elements;
     int index = 0;
-    while(n->elements != NULL){
-        if (union_comparision(n->elements->meta.data, thing)){
+    while(n != NULL){
+        if (union_comparision(n->meta.data, thing)){
             printf("On index %d was deleted: ", index);
-            print_element(n->elements->meta);
+            print_element(n->meta);
             printf("\n");
-            remove(&n);
+            remove_node(&n);
             queue->size -= 1;
         }
         index++;
         n = walk_to_tail(n);
     }
-}
 }
 
 void edit(list *queue, int index) {
@@ -135,16 +133,16 @@ void menu(list *queue) {
 
         switch (command) {
             case 1:
-                status = insert(queue);
-                if (status == -1) puts("Full queue!");
-                break;
-
+                printf("== Insert ==\n");
+                insert(queue);
             case 2:
+                printf("== Pop ==\n");
                 status = pop(queue);
                 if (status == -1) puts("Empty queue!");
                 break;
 
             case 3:
+                printf("== Print ==\n");
                 print_list(queue);
                 break;
 
@@ -156,23 +154,25 @@ void menu(list *queue) {
                 */
 
             case 5:
-                element.integer = generate("Edit value in index: ");
+                printf("== Edit ==\n");
                 /*
                     Reformulate that code
 
                 */
                 break;
             case 6:
-                printf("== Erase element ==\n");
+                printf("== Erase ==\n");
                 /*
-                    Reformulate that code
+                    Reformulate this code
 
                 */
                 break;
             case 7:
+                printf("== Random ==\n");
                 random_values(queue);
                 break;
             case 8:
+                printf("== ClearList ==\n");
                 clear_list(queue);
                 break;
             case 0:
