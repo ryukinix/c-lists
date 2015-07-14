@@ -21,7 +21,9 @@ node* walk_foward(node *n){
     n = n->next;
     return n;
 }
-node* walk_foward(node *n){
+
+// don't you mean walk backwards?
+node* walk_backwards(node *n){
     n = n->back;
     return n;
 }
