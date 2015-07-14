@@ -41,7 +41,7 @@
 
 
 // pop the queue (remove the head)
-int pop(list *queue) {
+void pop(list *queue) {
     if (queue->state == empty) {
         return -1;
     } else {
@@ -52,7 +52,8 @@ int pop(list *queue) {
         queue->elements = queue->elements->next;
     }
 
-    return 0;
+    queue->size -= 1;
+
 }
 
 
@@ -62,33 +63,46 @@ void insert(list *queue) {
     node *new_tail = old_tail->next;
     start_node(new_tail);
     new_tail->back = old_tail;
+    queue->size += 1;
 }
 
-int search(list *queue, something thing) {
+void search(list *queue, something thing) {
+    node *n = queue->elements;
+    int index = 0;
+    while(n->elements != NULL){
+        if (union_comparision(n->elements->meta.data, thing)){
+            printf("On index %d was found: ", index);
+            print_element(n->elements->meta);
+            printf("\n");
+        }
+        index++;
+        n = walk_to_tail(n);
+    }
+}
+
+void erase(list *queue, something thing) {    
+    node *n = queue->elements;
+    int index = 0;
+    while(n->elements != NULL){
+        if (union_comparision(n->elements->meta.data, thing)){
+            printf("On index %d was deleted: ", index);
+            print_element(n->elements->meta);
+            printf("\n");
+            remove(&n);
+            queue->size -= 1;
+        }
+        index++;
+        n = walk_to_tail(n);
+    }
+}
+}
+
+void edit(list *queue, int index) {
     /*
         Reformulate that code
 
     */
 
-    return -1;
-}
-
-int erase(list *queue, something thing) {    
-    /*
-        Reformulate that code
-
-    */
-
-    return index;
-}
-
-int edit(list *queue, int index) {
-    /*
-        Reformulate that code
-
-    */
-
-    return 0;
 }
 
 
