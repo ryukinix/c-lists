@@ -6,7 +6,7 @@
  *
  *       Filename:  dynamic-queue.c
  *
- *    Description:  A queue dynamic for any type
+ *    Description:  A queue dynamic for any type.
  *
  *         Author:  Manoel Vilela
  *        Contact:  manoel_vilela@engineer.com
