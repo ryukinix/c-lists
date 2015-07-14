@@ -53,6 +53,13 @@ node* walk_to_tail(node *head){
     return n;
 }
 
+void remove(node **some_node){
+    free(some_node);
+    some_node = (*some_node)->next;
+}
+
+// END
+
 // print the list
 void print_list(list *l) {
     int i;
