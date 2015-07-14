@@ -22,10 +22,10 @@ typedef enum {
 } id_state;
 
 
-typedef struct {
+typedef struct _node {
     meta_data meta;
-    node *next;
-    node *back;
+    struct _node *next;
+    struct _node *back;
 } node;
 
 typedef struct {
