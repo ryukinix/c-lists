@@ -6,7 +6,7 @@
  *
  *       Filename:  dynamic-queue.c
  *
- *    Description:  A queue dynamic for any type
+ *    Description:  A queue dynamic for any type.
  *
  *         Author:  Manoel Vilela
  *        Contact:  manoel_vilela@engineer.com
@@ -97,7 +97,7 @@ void erase(list *queue, something thing) {
 
 void edit(list *queue, int index) {
     /*
-        Reformulate that code
+        Reformulate this code
 
     */
 
@@ -163,7 +163,7 @@ void menu(list *queue) {
             case 6:
                 printf("== Erase ==\n");
                 /*
-                    Reformulate that code
+                    Reformulate this code
 
                 */
                 break;
