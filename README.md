@@ -45,7 +45,7 @@ GPLv3
       - [ ] search
       - [ ] edit
   - [ ] stack
-    - [ ] static
+    - [X] static
       - [X] insert
       - [X] delete
       - [X] search
@@ -56,7 +56,7 @@ GPLv3
       - [ ] search
       - [ ] edit
   - [ ] deque
-    - [ ] static
+    - [X] static
       - [X] insert
       - [X] delete
       - [X] search
