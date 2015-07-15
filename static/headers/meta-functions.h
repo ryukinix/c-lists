@@ -1,3 +1,6 @@
+#ifndef META_FUNCTIONS_H
+#define META_FUNCTIONS_H
+
 /* ==========================================================
  *
  *  -*- Some functions for manipulate meta-types  -*-
@@ -77,3 +80,5 @@ void type_choose(meta_data *element){
     }  
 }
 */
+
+#endif // META_FUNCTIONS_H

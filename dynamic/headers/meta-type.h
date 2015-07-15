@@ -1,3 +1,5 @@
+#ifndef META_TYPE_H
+#define META_TYPE_H
 /**==========================================================
  *
  *  -*- All structures definition of meta type are below  -*-
@@ -30,3 +32,4 @@ typedef struct {
     identifier type;
 } meta_data;
 
+#endif //META_TYPE_H
