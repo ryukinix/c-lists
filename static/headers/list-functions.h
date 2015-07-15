@@ -10,6 +10,17 @@
 
 #include <time.h>
 
+// generate a int number with a message for stdout
+int generate(const char *message) {
+    int num;
+    puts(message);
+    scanf("%d", &num);
+    printf("\n");
+    clear_buffer();
+
+    return num;
+}
+
 //print the list
 void print_list(list *l) {
     int i;

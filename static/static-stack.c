@@ -40,19 +40,7 @@
  */
 
 
-// generate a int number with a message for stdout
-int generate(const char *message) {
-    int num;
-    puts(message);
-    scanf("%d", &num);
-    printf("\n");
-    clear_buffer();
-
-    return num;
-}
-
-
-// pop the stack (remove the head)
+// pop the stack (erase the head)
 int pop(list *stack) {
     if (stack->state == empty) {
         return -1;
@@ -87,7 +75,7 @@ int search(list *stack, something thing) {
     return -1;
 }
 
-int remove(list *stack, something thing) {
+int erase(list *stack, something thing) {
     int index = search(stack, thing);
 
     if (index != -1)
@@ -129,7 +117,7 @@ void menu(list *stack) {
                 3.Print_list\n\
                 4.Search\n\
                 5.Edit\n\
-                6.Remove\n\
+                6.erase\n\
                 7.Rearrange\n\
                 8.RandomValues\n\
                 9.TypeChange\n\
@@ -175,9 +163,9 @@ void menu(list *stack) {
                 break;
 
             case 6:
-                printf("== Remove element ==\n");
+                printf("== erase element ==\n");
                 element = new_thing(stack->elements[0].type);
-                status = remove(stack, element);
+                status = erase(stack, element);
                 
                 // output
                 if (status != -1)

@@ -46,19 +46,7 @@
  */
 
 
-// generate a int number with a message for stdout
-int generate(const char *message) {
-    int num;
-    puts(message);
-    scanf("%d", &num);
-    printf("\n");
-    clear_buffer();
-
-    return num;
-}
-
-
-// pop the deque (remove the head)
+// pop the deque (erase the head)
 int pop_left(list *deque) {
     if (deque->state == empty) 
         return -1;
@@ -194,9 +182,9 @@ int search(list *deque, something thing) {
     return -1;
 }
 
-/* remove is already defined in stdio.h
+/* erase is already defined in stdio.h
  */
-int remove(list *deque, something thing) {
+int erase(list *deque, something thing) {
     int index = search(deque, thing);
 
     if (index != -1) {
@@ -240,7 +228,7 @@ void menu(list *deque) {
                 3.Print_list\n\
                 4.Search\n\
                 5.Edit\n\
-                6.Remove\n\
+                6.Erase\n\
                 7.Rearrange\n\
                 8.RandomValues\n\
                 9.TypeChange\n\
@@ -286,9 +274,9 @@ void menu(list *deque) {
                 break;
 
             case 6:
-                printf("== remove element ==\n");
+                printf("== erase element ==\n");
                 element = new_thing(deque->elements[0].type);
-                status = remove(deque, element);
+                status = erase(deque, element);
                 
                 // output
                 if (status != -1)
