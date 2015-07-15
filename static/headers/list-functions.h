@@ -112,7 +112,7 @@ void type_choose(list *l) {
 
 void start(list *l) {
     // get the size of list
-    int size = (generate("Enter a size: ");
+    int size = generate("Enter a size: ");
 
     l->size = size;
 
