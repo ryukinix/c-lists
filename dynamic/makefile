@@ -9,6 +9,6 @@ LFLAGS = -Wall -o
 TARGET =  dynamic-queue
 
 all: 
-	$(GCC) $(LFLAGS) $(TARGET) $(TARGET).c
+	$(GCC) $(LFLAGS) $(TARGET).out $(TARGET).c
 clean: 
-	$(RM) $(TARGET)
+	rm *.out
