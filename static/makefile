@@ -8,13 +8,13 @@ STACK_TARGET = static-stack
 all: static-deque static-queue static-stack
 
 static-deque:
-	$(GCC) $(LFLAGS) $(DEQUE_TARGET) $(DEQUE_TARGET).c 
+	$(GCC) $(LFLAGS) $(DEQUE_TARGET).out $(DEQUE_TARGET).c 
 
 static-queue:
-	$(GCC) $(LFLAGS) $(QUEUE_TARGET) $(QUEUE_TARGET).c
+	$(GCC) $(LFLAGS) $(QUEUE_TARGET).out $(QUEUE_TARGET).c
 
 static-stack:
-	$(GCC) $(LFLAGS) $(STACK_TARGET) $(STACK_TARGET).c 
+	$(GCC) $(LFLAGS) $(STACK_TARGET).out $(STACK_TARGET).c 
 
 clean:
-	rm $(QUEUE_TARGET) $(DEQUE_TARGET) $(STACK_TARGET)
+	rm *.out
