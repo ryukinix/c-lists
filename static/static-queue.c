@@ -40,19 +40,7 @@
  */
 
 
-// generate a int number with a message for stdout
-int generate(const char *message) {
-    int num;
-    puts(message);
-    scanf("%d", &num);
-    printf("\n");
-    clear_buffer();
-
-    return num;
-}
-
-
-// pop the queue (remove the head)
+// pop the queue (erase the head)
 int pop(list *queue) {
     if (queue->state == empty) {
         return -1;
@@ -87,7 +75,7 @@ int search(list *queue, something thing) {
     return -1;
 }
 
-int remove(list *queue, something thing) {
+int erase(list *queue, something thing) {
     int index = search(queue, thing);
 
     if (index != -1)
@@ -129,7 +117,7 @@ void menu(list *queue) {
                 3.Print_list\n\
                 4.Search\n\
                 5.Edit\n\
-                6.Remove\n\
+                6.Erase\n\
                 7.Rearrange\n\
                 8.RandomValues\n\
                 9.TypeChange\n\
@@ -175,9 +163,9 @@ void menu(list *queue) {
                 break;
 
             case 6:
-                printf("== Remove element ==\n");
+                printf("== erase element ==\n");
                 element = new_thing(queue->elements[0].type);
-                status = remove(queue, element);
+                status = erase(queue, element);
                 
                 // output
                 if (status != -1)
