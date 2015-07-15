@@ -1,3 +1,6 @@
+#ifndef LIST_FUNCTIONS_H
+#define LIST_FUNCTIONS_H
+
 /* ================================================
  *
  *  -*- Definition of all basic functions list  -*-
@@ -126,3 +129,4 @@ void random_values(list *l) {
     }
 }
 
+#endif //LIST_FUNCTIONS_H

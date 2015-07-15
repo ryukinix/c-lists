@@ -1,3 +1,6 @@
+#ifndef LIST_TYPE_H
+#define LIST_TYPE_H
+
 /* ===================================================================
  *
  *                 -*-  A resume of a static list struct    -*-
@@ -30,4 +33,4 @@ typedef struct {
     int size;
 } list;
 
-
+#endif //LIST_TYPE_H

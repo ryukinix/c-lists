@@ -6,7 +6,7 @@
  *
  *       Filename:  static-stack.c
  *
- *    Description:  A stack whose you can choose the type and your size
+ *    Description:  A stack whose you can choose the type and your size.
  *
  *         Author:  Manoel Vilela
  *        Contact:  manoel_vilela@engineer.com

@@ -6,7 +6,7 @@
  *
  *       Filename:  static-deque.c
  *
- *    Description:  A deque whose you can choose the type and your size
+ *    Description:  A deque whose you can choose the type and your size.
  *
  *         Author:  Manoel Vilela
  *        Contact:  manoel_vilela@engineer.com
@@ -95,12 +95,18 @@ int pop(list *deque){
     scanf("%d", &command);
     clear_buffer();
 
-    if (command == 1)
+    if (command == 1) {
         return pop_left(deque);
-    else if (command == 2)
+    }
+    else if (command == 2) {
         return pop_right(deque);
-    else
+    }
+    else {
         pop(deque);
+    }
+
+    //temporary solution?
+    return EXIT_SUCCESS;
 }
 
 void transpose(list *deque, int blocks) {
@@ -132,8 +138,9 @@ void transpose(list *deque, int blocks) {
 
 // insert a value in a tail of deque;
 int insert_right(list *deque) {
-    if (deque->state == full)
+    if (deque->state == full) {
         return -1;
+    }
 
     deque->last_index++;
     insert_on(deque, deque->last_index);
@@ -142,8 +149,9 @@ int insert_right(list *deque) {
 }
 
 int insert_left(list *deque) {
-    if (deque->state == full)
+    if (deque->state == full) {
         return -1;
+    }
 
     deque->last_index++;
     transpose(deque, 1);
@@ -161,13 +169,19 @@ int insert(list *deque) {
     scanf("%d", &command);
     clear_buffer();
 
-    if (command == 1)
+    if (command == 1) {
         return insert_left(deque);
-    else if (command == 2)
-        return insert_right(deque);
-    else
+    }
+    else if (command == 2) {
+        return insert_right(deque); 
+    }
+    else { 
+        // this else is error prone.
         insert(deque);
+    }
 
+    // temporary solution?
+    return EXIT_SUCCESS;
 }
 
 
@@ -180,19 +194,23 @@ int search(list *deque, something thing) {
     return -1;
 }
 
+/* remove is already defined in stdio.h
+ */
 int remove(list *deque, something thing) {
     int index = search(deque, thing);
 
-    if (index != -1)
+    if (index != -1) {
         del(deque, index);
-    else
+    }
+    else {
         return -1;
+    }
 
     return index;
 }
 
 int edit(list *deque, int index) {
-    // verify if index is not do the pesar of violate the lenght of vector
+    // verify if the index given violates the lenght of the vector.
     if (!(index >= 0 && index <= deque->size))
         return -1;
 
@@ -302,16 +320,8 @@ void menu(list *deque) {
         }
 
         pause("Press enter to continue...");
-    }while(command != 0);
+    } while (command != 0);
 }
-
-
-/* ==========================================
- *
- *  -*-       THE BIG MAIN CODE           -*-
- *
- * ==========================================
- */
 
 int main(void) {
     list deque;

@@ -1,3 +1,6 @@
+#ifndef CLEAR_PAUSE_H
+#define CLEAR_PAUSE_H
+
 #define CLEAR "clear || cls"
 
 // clear the stdin
@@ -18,3 +21,5 @@ void get_out(){
     printf("There is no necessary memory available.\n");
     exit(EXIT_FAILURE);
 }
+
+#endif // CLEAR_PAUSE_H
