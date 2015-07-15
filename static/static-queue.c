@@ -6,7 +6,7 @@
  *
  *       Filename:  static-queue.c
  *
- *    Description:  A queue whose you can choose the type and your size
+ *    Description:  A queue whose you can choose the type and your size.
  *
  *         Author:  Manoel Vilela
  *        Contact:  manoel_vilela@engineer.com

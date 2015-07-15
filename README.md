@@ -5,12 +5,12 @@ This repository have a few codes made in ANSI C with implementation of lists sub
   * `stack`
   * `deque`
 
-The implementation was divised in "static" and "dynamic"; the static implementation uses just vectors and dynamic use linkeds lists.
+The implementation was divided in "static" and "dynamic"; the static implementation uses just vectors and dynamic use linkeds lists.
 
 ## Usage
 
-Clone this repository and after open a terminal session on the working directory that compile with gcc and execute.:
-  * `gcc file.c -o file.out && ./file.out`
+Clone this repository and after it, open a terminal session on the working directory, compile with gcc and execute:
+  * `gcc file.c -o file && ./file`
 
 ## Contributing
 
@@ -22,10 +22,11 @@ Clone this repository and after open a terminal session on the working directory
 
 ## History
 
-For now, after hours, I finally i did can implement a basic control system for a "half-dynamic" queue.
+For now, after hours, I have finally implemented a basic control system for a "half-dynamic" queue.
 
 ## Credits
   * Me (Manoel Vilela)
+  * [Rafael C. Nunes](https://github.com/rafaelcn) (Few or no modifications if you put my work compared to the main contributor.)
 
 ## License
 

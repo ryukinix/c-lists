@@ -1,3 +1,6 @@
+#ifndef LIST_FUNCTIONS_H
+#define LIST_FUNCTIONS_H
+
 /* =============================================
  *
  *  -*- Definition of all basic functions list  -*-
@@ -10,7 +13,8 @@
 //print the list
 void print_list(list *l) {
     int i;
-    identifier type = l->elements[0].type;
+    // Is this variable below being used? No? So let it commented. 
+    //identifier type = l->elements[0].type;
 
     printf("%s: [ ", l->subclass);
     for (i = 0; i < l->size; i++)
@@ -109,6 +113,7 @@ void type_choose(list *l) {
 void start(list *l) {
     // get the size of list
     int size = generate("Enter a size: ");
+
     l->size = size;
 
     // alloc memory
@@ -151,3 +156,4 @@ void random_values(list *l) {
     l->last_index = i - 1;
 }
 
+#endif // LIST_FUNCTIONS_H
