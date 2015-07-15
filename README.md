@@ -26,7 +26,7 @@ For now, after hours, I have finally implemented a basic control system for a "h
 
 ## Credits
   * Me (Manoel Vilela)
-  * [https://github.com/rafaelcn](Rafael C. Nunes) (Few or no modifications if you put my work compared to the main contributor.)
+  * [Rafael C. Nunes](https://github.com/rafaelcn) (Few or no modifications if you put my work compared to the main contributor.)
 
 ## License
 
