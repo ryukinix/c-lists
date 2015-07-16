@@ -11,9 +11,9 @@ The implementation was divided in "static" and "dynamic"; the static implementat
 
 Clone this repository and after it, open a terminal session on the working directory, use make and execute the program you wish:
   
-  * cd static || cd dynamic
-  * make
-  * ./type-program.out
+  * `cd static || cd dynamic`
+  * `make`
+  * `./type-program.out`
 
 ## Contributing
 
