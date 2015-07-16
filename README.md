@@ -9,8 +9,11 @@ The implementation was divided in "static" and "dynamic"; the static implementat
 
 ## Usage
 
-Clone this repository and after it, open a terminal session on the working directory, compile with gcc and execute:
-  * `gcc file.c -o file && ./file`
+Clone this repository and after it, open a terminal session on the working directory, use make and execute the program you wish:
+  
+  * cd static || cd dynamic
+  * make
+  * ./type-program.out
 
 ## Contributing
 
