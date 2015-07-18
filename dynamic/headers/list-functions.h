@@ -36,11 +36,11 @@ void insert_node(node *n){
 }
 
 
-void start_node(node *n){
-    // allocation of memory 
-    n = (node *) malloc(sizeof(node));
-    insert_node(n);
-    n->next = NULL;
+void start_node(node **n){
+    // allocation of memory
+    *n = (node *) malloc(sizeof(node));
+    insert_node(*n);
+    (*n)->next = NULL;
 }
 
 // walk until the n node of the linked list
@@ -53,11 +53,12 @@ node* walk_until(node *head, int index){
 }
 
 node* walk_to_tail(node *head){
-    node *n = head;
+    node* n = head;
 
-    int i;
-    for (i = 0; n != NULL; i++)
+    while (n->next != NULL) {
         n = walk_forward(n);
+    }
+
     return n;
 }
 
@@ -99,13 +100,13 @@ void verify_state(list *l) {
         l->state = available;
 }
 
-// start the list 
+// start the list
 void start(list *l) {
     // initial size;
     l->size = 0;
 
     // point to null
-    l->elements = NULL; 
+    l->elements = NULL;
 
     // start the initial values
     l->state = empty;
