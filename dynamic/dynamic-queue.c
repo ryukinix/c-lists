@@ -24,7 +24,7 @@
 #define LIST_TYPE "Queue"
 
 // my headers
-#include "headers/clear-pause.h" 
+#include "headers/clear-pause.h"
 #include "headers/meta-type.h"
 #include "headers/list-type.h"
 #include "headers/meta-functions.h"
@@ -58,10 +58,20 @@ int pop(list *queue) {
 
 // insert a value in a tail of queue;
 void insert(list *queue) {
+    // create a node if ->elements is nil
+    if (queue->elements == NULL) {
+        node *first;
+        start_node(&first);
+        queue->elements = first;
+        queue->size = 1;
+        return;
+    }
+
     node *old_tail = walk_to_tail(queue->elements);
-    node *new_tail = old_tail->next;
-    start_node(new_tail);
+    node *new_tail;
+    start_node(&new_tail);
     new_tail->back = old_tail;
+    old_tail->next = new_tail;
     queue->size += 1;
 }
 
@@ -79,7 +89,7 @@ void search(list *queue, something thing) {
     }
 }
 
-void erase(list *queue, something thing) {    
+void erase(list *queue, something thing) {
     node *n = queue->elements;
     int index = 0;
     while (n != NULL) {
@@ -134,6 +144,7 @@ void menu(list *queue) {
             case 1:
                 printf("== Insert ==\n");
                 insert(queue);
+                break;
             case 2:
                 printf("== Pop ==\n");
                 status = pop(queue);
@@ -151,6 +162,7 @@ void menu(list *queue) {
                     Reformulate that code
 
                 */
+                break;
 
             case 5:
                 printf("== Edit ==\n");
