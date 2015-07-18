@@ -68,21 +68,21 @@ void insert(list *queue) {
 void search(list *queue, something thing) {
     node *n = queue->elements;
     int index = 0;
-    while(n != NULL){
+    while (n != NULL) {
         if (union_comparision(n->meta.data, thing)){
             printf("On index %d was found: ", index);
             print_element(n->meta);
             printf("\n");
         }
         index++;
-        n = walk_to_tail(n);
+        n = walk_forward(n);
     }
 }
 
 void erase(list *queue, something thing) {    
     node *n = queue->elements;
     int index = 0;
-    while(n != NULL){
+    while (n != NULL) {
         if (union_comparision(n->meta.data, thing)){
             printf("On index %d was deleted: ", index);
             print_element(n->meta);
@@ -91,22 +91,21 @@ void erase(list *queue, something thing) {
             queue->size -= 1;
         }
         index++;
-        n = walk_to_tail(n);
+        n = walk_forward(n);
     }
 }
 
 void edit(list *queue, int index) {
-    /*
-        Reformulate this code
+    node *n = queue->elements;
 
-    */
+    n = walk_until(n, index);
+    insert_node(n);
 
 }
 
 
 void menu(list *queue) {
     int command, status;
-    meta_data element;
 
     do {
         system(CLEAR);
@@ -114,7 +113,7 @@ void menu(list *queue) {
         puts("Implementation of a static queue as a subclass of the list type!\n\n");
         printf("[subclass]: %s\n", queue->subclass);
         printf("[size]: %d\n", queue->size);
-        printf("[head-type]: %s\n", type_strings[ (queue->elements->meta.type) ]);
+        //printf("[head-type]: %s\n", type_strings[ (queue->elements->meta.type) ]);
         printf("[status]: %s\n\n", state_strings[queue->state]);
         printf("\
                 --> 0.Exit\n\n\
