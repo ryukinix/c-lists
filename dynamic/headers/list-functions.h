@@ -29,14 +29,17 @@ node* walk_backwards(node *n){
     return n;
 }
 
-void start_node(node *n){
-    // allocation of memory 
-    n = (node *) malloc(sizeof(node));
-    
+void insert_node(node *n){
     // type choose and input of data
     type_choose(&(n->meta));
     n->meta.data = new_thing(n->meta.type);
+}
 
+
+void start_node(node *n){
+    // allocation of memory 
+    n = (node *) malloc(sizeof(node));
+    insert_node(n);
     n->next = NULL;
 }
 
