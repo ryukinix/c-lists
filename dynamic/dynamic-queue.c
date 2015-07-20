@@ -58,11 +58,12 @@ int pop(list *queue) {
 
 // insert a value in a tail of queue;
 void insert(list *queue) {
-    // create a node if ->elements is nil
+    // create a node if queue->elements is nil
     if (queue->elements == NULL) {
         node *first;
         start_node(&first);
         queue->elements = first;
+        queue->elements->back = NULL;
         queue->size = 1;
         return;
     }
