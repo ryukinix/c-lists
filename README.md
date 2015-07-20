@@ -27,9 +27,10 @@ Clone this repository and after it, open a terminal session on the working direc
 
 For now, after hours, I have finally implemented a basic control system for a "half-dynamic" queue.
 
-## Credits
+## Contributors
   * Me (Manoel Vilela)
-  * [Rafael C. Nunes](https://github.com/rafaelcn) (Few or no modifications if you put my work compared to the main contributor.)
+  * [Rafael C. Nunes](https://github.com/rafaelcn) (guest)
+  * [Fabrício Werneck](https://github.com/Fawers) (guest)
 
 ## License
 
