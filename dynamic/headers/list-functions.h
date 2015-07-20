@@ -78,7 +78,7 @@ void print_list(list *l) {
     node *n = l->elements;
 
     printf("%s: [ ", l->subclass);
-    for (i = 0; l->elements != NULL; i++){
+    for (i = 0; n != NULL; i++){
         print_element(n->meta);
         n = walk_forward(n);
     }
