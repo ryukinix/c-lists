@@ -41,33 +41,33 @@ GPLv3
   - [ ] queue
     - [X] static
       - [X] insert
-      - [X] delete
+      - [X] pop
       - [X] search
       - [X] edit
     - [ ] dynamic
-      - [ ] insert
-      - [ ] delete
+      - [X] insert
+      - [X] pop
       - [ ] search
       - [ ] edit
   - [ ] stack
     - [X] static
       - [X] insert
-      - [X] delete
+      - [X] pop
       - [X] search
       - [X] edit
     - [ ] dynamic
       - [ ] insert
-      - [ ] delete
+      - [ ] pop
       - [ ] search
       - [ ] edit
   - [ ] deque
     - [X] static
       - [X] insert
-      - [X] delete
+      - [X] pop
       - [X] search
       - [X] edit
     - [ ] dynamic
       - [ ] insert
-      - [ ] delete
+      - [ ] pop
       - [ ] search
       - [ ] edit
