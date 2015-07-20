@@ -31,8 +31,7 @@ node* walk_backwards(node *n){
 
 void insert_node(node *n){
     // type choose and input of data
-    type_choose(&(n->meta));
-    n->meta.data = new_thing(n->meta.type);
+    new_meta(&(n->meta));
 }
 
 

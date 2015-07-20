@@ -22,33 +22,6 @@ void print_element(meta_data meta) {
     }
 }
 
-something new_thing(identifier type){
-    printf("Insert a thing: ");
-    something the_thing;
-
-    if (type == integer)
-        scanf("%d", &the_thing.integer);
-    else if (type == character)
-        scanf("%c", &the_thing.character);
-    else if (type == real)
-        scanf("%f", &the_thing.real);
-
-    clear_buffer();
-
-    return the_thing;
-}
-
-int union_comparision(something x, something y){
-    if (x.integer == y.integer)
-        return true;
-    else if (x.character == y.character)
-        return true;
-    else if (x.real == y.real)
-        return true;
-
-    return false;
-}
-
 
 void type_choose(meta_data *meta){
     int command;  
@@ -76,3 +49,36 @@ void type_choose(meta_data *meta){
             break;       
     }  
 }
+
+something new_thing(identifier type){
+    printf("Insert a thing: ");
+    something the_thing;
+
+    if (type == integer)
+        scanf("%d", &the_thing.integer);
+    else if (type == character)
+        scanf("%c", &the_thing.character);
+    else if (type == real)
+        scanf("%f", &the_thing.real);
+
+    clear_buffer();
+
+    return the_thing;
+}
+
+void new_meta(meta_data *meta){
+    type_choose(meta);
+    meta->data = new_thing(meta->type);
+}
+
+int union_comparision(something x, something y){
+    if (x.integer == y.integer)
+        return true;
+    else if (x.character == y.character)
+        return true;
+    else if (x.real == y.real)
+        return true;
+
+    return false;
+}
+
