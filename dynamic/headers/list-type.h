@@ -15,7 +15,6 @@
 
 
 // for aux the enums
-static const char *type_strings[] = { "integer", "character",  "real"};
 static const char *state_strings[] = {"empty", "available", "full"};
 
 typedef enum {
