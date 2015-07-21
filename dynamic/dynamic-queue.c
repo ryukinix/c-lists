@@ -45,7 +45,7 @@ int pop(list *queue) {
     if (queue->state == empty) {
         return -1;
     } else {
-        printf("Pop head: ");
+        printf("[pop] Pop head: ");
         print_element(queue->elements->meta);
         printf("\n");
         free(queue->elements);
@@ -81,7 +81,7 @@ void search(list *queue, something thing) {
     int index = 0;
     while (n != NULL) {
         if (union_comparision(n->meta.data, thing)){
-            printf("On index %d was found: ", index);
+            printf("[\nsearch] On index %d was found: ", index);
             print_element(n->meta);
             printf("\n");
         }
@@ -95,7 +95,7 @@ void erase(list *queue, something thing) {
     int index = 0;
     while (n != NULL) {
         if (union_comparision(n->meta.data, thing)){
-            printf("On index %d was deleted: ", index);
+            printf("\n[erase] On index %d was deleted: ", index);
             print_element(n->meta);
             printf("\n");
             remove_node(&n);
@@ -106,12 +106,19 @@ void erase(list *queue, something thing) {
     }
 }
 
-void edit(list *queue, int index) {
+void edit(list *queue, something thing) {
     node *n = queue->elements;
-
-    n = walk_until(n, index);
-    insert_node(n);
-
+    int index = 0;
+    while (n != NULL) {
+        if (union_comparision(n->meta.data, thing)) {
+            printf("\n[edit] On index %d was editing: ", index);
+            print_element(n->meta);
+            printf("\n");
+            insert_node(n);
+        }
+        index++;
+        n = walk_forward(n);
+    }
 }
 
 
@@ -164,7 +171,7 @@ void menu(list *queue) {
             case 5:
                 printf("== Edit ==\n");
                 new_meta(&element);
-                edit(queue, element.data.integer);
+                edit(queue, element.data);
                 break;
             case 6:
                 printf("== Erase ==\n");
