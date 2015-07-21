@@ -4,9 +4,9 @@
  *                      Copyright 2015 Manoel Vilela
  *
  *
- *       Filename:  dynamic-queue.c
+ *       Filename:  dynamic-deque.c
  *
- *    Description:  A queue dynamic for any type.
+ *    Description:  A deque dynamic for any type.
  *
  *         Author:  Manoel Vilela
  *        Contact:  manoel_vilela@engineer.com
@@ -21,7 +21,7 @@
 #include <string.h>
 
 // my macros
-#define LIST_TYPE "Queue"
+#define LIST_TYPE "Deque"
 
 // my headers
 #include "headers/clear-pause.h"
@@ -33,51 +33,51 @@
 
 /* ================================================
  *
- *  -*- Definition of all main queue functions  -*-
+ *  -*- Definition of all main deque functions  -*-
  *
  * ================================================
  */
 
 
 
-// pop the queue (remove the head)
-int pop(list *queue) {
-    if (queue->state == empty) {
+// pop the deque (remove the head)
+int pop(list *deque) {
+    if (deque->state == empty) {
         return -1;
     } else {
         printf("[pop] Pop head: ");
-        print_element(queue->elements->meta);
+        print_element(deque->elements->meta);
         printf("\n");
-        free(queue->elements);
-        queue->elements = queue->elements->next;
-        queue->size -= 1;
+        free(deque->elements);
+        deque->elements = deque->elements->next;
+        deque->size -= 1;
     }
     return 0;
 }
 
 
-// insert a value in a tail of queue;
-void insert(list *queue) {
-    // create a node if queue->elements is nil
-    if (queue->elements == NULL) {
+// insert a value in a tail of deque;
+void insert(list *deque) {
+    // create a node if deque->elements is nil
+    if (deque->elements == NULL) {
         node *first;
         start_node(&first);
-        queue->elements = first;
-        queue->elements->back = NULL;
-        queue->size = 1;
+        deque->elements = first;
+        deque->elements->back = NULL;
+        deque->size = 1;
         return;
     }
 
-    node *old_tail = walk_to_tail(queue->elements);
+    node *old_tail = walk_to_tail(deque->elements);
     node *new_tail;
     start_node(&new_tail);
     new_tail->back = old_tail;
     old_tail->next = new_tail;
-    queue->size += 1;
+    deque->size += 1;
 }
 
-void search(list *queue, something thing) {
-    node *n = queue->elements;
+void search(list *deque, something thing) {
+    node *n = deque->elements;
     int index = 0;
     while (n != NULL) {
         if (union_comparision(n->meta.data, thing)){
@@ -90,8 +90,8 @@ void search(list *queue, something thing) {
     }
 }
 
-void erase(list *queue, something thing) {
-    node *n = queue->elements;
+void erase(list *deque, something thing) {
+    node *n = deque->elements;
     int index = 0;
     while (n != NULL) {
         if (union_comparision(n->meta.data, thing)){
@@ -99,15 +99,15 @@ void erase(list *queue, something thing) {
             print_element(n->meta);
             printf("\n");
             remove_node(&n);
-            queue->size -= 1;
+            deque->size -= 1;
         }
         index++;
         n = walk_forward(n);
     }
 }
 
-void edit(list *queue, something thing) {
-    node *n = queue->elements;
+void edit(list *deque, something thing) {
+    node *n = deque->elements;
     int index = 0;
     while (n != NULL) {
         if (union_comparision(n->meta.data, thing)) {
@@ -122,17 +122,17 @@ void edit(list *queue, something thing) {
 }
 
 
-void menu(list *queue) {
+void menu(list *deque) {
     int command, status;
     meta_data element;
 
     do {
         system(CLEAR);
-        verify_state(queue);
-        puts("Implementation of a dynamic queue as a subclass of the list type!\n\n");
-        printf("[subclass]: %s\n", queue->subclass);
-        printf("[size]: %d\n", queue->size);
-        printf("[status]: %s\n\n", state_strings[queue->state]);
+        verify_state(deque);
+        puts("Implementation of a dynamic deque as a subclass of the list type!\n\n");
+        printf("[subclass]: %s\n", deque->subclass);
+        printf("[size]: %d\n", deque->size);
+        printf("[status]: %s\n\n", state_strings[deque->state]);
         printf("\
                 --> 0.Exit\n\n\
          ===[>Fundamental Methods<]===\n\n\
@@ -151,39 +151,39 @@ void menu(list *queue) {
         switch (command) {
             case 1:
                 printf("== Insert ==\n");
-                insert(queue);
+                insert(deque);
                 break;
             case 2:
                 printf("== Pop ==\n");
-                status = pop(queue);
-                if (status == -1) puts("Empty queue!");
+                status = pop(deque);
+                if (status == -1) puts("Empty deque!");
                 break;
             case 3:
                 printf("== Print ==\n");
-                print_list(queue);
+                print_list(deque);
                 break;
             case 4:
                 printf("== Search ==\n");
                 new_meta(&element);
-                search(queue, element.data);
+                search(deque, element.data);
                 break;
             case 5:
                 printf("== Edit ==\n");
                 new_meta(&element);
-                edit(queue, element.data);
+                edit(deque, element.data);
                 break;
             case 6:
                 printf("== Erase ==\n");
                 new_meta(&element);
-                erase(queue, element.data);
+                erase(deque, element.data);
                 break;
             case 7:
                 printf("== Random ==\n");
-                random_values(queue);
+                random_values(deque);
                 break;
             case 8:
                 printf("== ClearList ==\n");
-                clear_list(queue);
+                clear_list(deque);
                 break;
             case 0:
                 printf("Leaving the universe...\n");
@@ -207,11 +207,11 @@ void menu(list *queue) {
  */
 
 int main(void) {
-    list queue;
-    strcpy(queue.subclass, LIST_TYPE);
+    list deque;
+    strcpy(deque.subclass, LIST_TYPE);
 
-    start(&queue);
-    menu(&queue);
+    start(&deque);
+    menu(&deque);
 
     return 0;
 }
