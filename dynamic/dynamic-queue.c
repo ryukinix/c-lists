@@ -117,6 +117,7 @@ void edit(list *queue, int index) {
 
 void menu(list *queue) {
     int command, status;
+    meta_data element;
 
     do {
         system(CLEAR);
@@ -151,33 +152,24 @@ void menu(list *queue) {
                 status = pop(queue);
                 if (status == -1) puts("Empty queue!");
                 break;
-
             case 3:
                 printf("== Print ==\n");
                 print_list(queue);
                 break;
-
             case 4:
                 printf("== Search ==\n");
-                /*
-                    Reformulate that code
-
-                */
+                new_meta(&element);
+                search(queue, element.data);
                 break;
-
             case 5:
                 printf("== Edit ==\n");
-                /*
-                    Reformulate that code
-
-                */
+                new_meta(&element);
+                edit(queue, element.data.integer);
                 break;
             case 6:
                 printf("== Erase ==\n");
-                /*
-                    Reformulate this code
-
-                */
+                new_meta(&element);
+                erase(queue, element.data);
                 break;
             case 7:
                 printf("== Random ==\n");
