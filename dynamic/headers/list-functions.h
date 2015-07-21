@@ -63,8 +63,6 @@ node* walk_to_tail(node *head){
 
 void remove_node(node **some_node){
     // erasing the reference to the pointer?
-    //free(some_node);
-
     free(*some_node);
     *some_node = (*some_node)->next;
 }
