@@ -132,7 +132,6 @@ void menu(list *queue) {
         puts("Implementation of a dynamic queue as a subclass of the list type!\n\n");
         printf("[subclass]: %s\n", queue->subclass);
         printf("[size]: %d\n", queue->size);
-        //printf("[head-type]: %s\n", type_strings[ (queue->elements->meta.type) ]);
         printf("[status]: %s\n\n", state_strings[queue->state]);
         printf("\
                 --> 0.Exit\n\n\
