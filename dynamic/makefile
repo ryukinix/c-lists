@@ -17,4 +17,4 @@ dynamic-stack:
 	$(GCC) $(LFLAGS) $(STACK_TARGET).out $(STACK_TARGET).c 
 
 clean:
-	rm *.out
+	rm -v *.out
