@@ -44,11 +44,11 @@ GPLv3
       - [X] pop
       - [X] search
       - [X] edit
-    - [ ] dynamic
+    - [X] dynamic
       - [X] insert
       - [X] pop
-      - [ ] search
-      - [ ] edit
+      - [X] search
+      - [X] edit
   - [ ] stack
     - [X] static
       - [X] insert
@@ -56,10 +56,12 @@ GPLv3
       - [X] search
       - [X] edit
     - [ ] dynamic
-      - [ ] insert
+      - [X] insert
       - [ ] pop
-      - [ ] search
-      - [ ] edit
+        - [X] basic
+        - [ ] bug with remove the root of list
+      - [X] search
+      - [X] edit
   - [ ] deque
     - [X] static
       - [X] insert
@@ -69,5 +71,5 @@ GPLv3
     - [ ] dynamic
       - [ ] insert
       - [ ] pop
-      - [ ] search
-      - [ ] edit
+      - [X] search
+      - [X] edit
