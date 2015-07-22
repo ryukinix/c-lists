@@ -78,51 +78,6 @@ void insert(list *stack) {
     stack->size += 1;
 }
 
-void search(list *stack, something thing) {
-    node *n = stack->elements;
-    int index = 0;
-    while (n != NULL) {
-        if (union_comparision(n->meta.data, thing)){
-            printf("[\nsearch] On index %d was found: ", index);
-            print_element(n->meta);
-            printf("\n");
-        }
-        index++;
-        n = walk_forward(n);
-    }
-}
-
-void erase(list *stack, something thing) {
-    node *n = stack->elements;
-    int index = 0;
-    while (n != NULL) {
-        if (union_comparision(n->meta.data, thing)){
-            printf("\n[erase] On index %d was deleted: ", index);
-            print_element(n->meta);
-            printf("\n");
-            remove_node(&n);
-            stack->size -= 1;
-        }
-        index++;
-        n = walk_forward(n);
-    }
-}
-
-void edit(list *stack, something thing) {
-    node *n = stack->elements;
-    int index = 0;
-    while (n != NULL) {
-        if (union_comparision(n->meta.data, thing)) {
-            printf("\n[edit] On index %d was editing: ", index);
-            print_element(n->meta);
-            printf("\n");
-            insert_node(n);
-        }
-        index++;
-        n = walk_forward(n);
-    }
-}
-
 
 void menu(list *stack) {
     int command, status;

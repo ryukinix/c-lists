@@ -130,4 +130,51 @@ void random_values(list *l) {
     }
 }
 
+void search(list *l, something thing) {
+    node *n = l->elements;
+    int index = 0;
+    while (n != NULL) {
+        if (union_comparision(n->meta.data, thing)){
+            printf("\n[search] On index %d was found: ", index);
+            print_element(n->meta);
+            printf("\n");
+        }
+        index++;
+        n = walk_forward(n);
+    }
+}
+
+void erase(list *l, something thing) {
+    node *n = l->elements;
+    int index = 0;
+    while (n != NULL) {
+        if (union_comparision(n->meta.data, thing)){
+            printf("\n[erase] On index %d was deleted: ", index);
+            print_element(n->meta);
+            printf("\n");
+            remove_node(&n);
+            l->size -= 1;
+        }
+        index++;
+        n = walk_forward(n);
+    }
+}
+
+void edit(list *l, something thing) {
+    node *n = l->elements;
+    int index = 0;
+    while (n != NULL) {
+        if (union_comparision(n->meta.data, thing)) {
+            printf("\n[edit] On index %d was editing: ", index);
+            print_element(n->meta);
+            printf("\n");
+            insert_node(n);
+        }
+        index++;
+        n = walk_forward(n);
+    }
+}
+
+
+
 #endif //LIST_FUNCTIONS_H

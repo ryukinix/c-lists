@@ -76,51 +76,6 @@ void insert(list *queue) {
     queue->size += 1;
 }
 
-void search(list *queue, something thing) {
-    node *n = queue->elements;
-    int index = 0;
-    while (n != NULL) {
-        if (union_comparision(n->meta.data, thing)){
-            printf("[\nsearch] On index %d was found: ", index);
-            print_element(n->meta);
-            printf("\n");
-        }
-        index++;
-        n = walk_forward(n);
-    }
-}
-
-void erase(list *queue, something thing) {
-    node *n = queue->elements;
-    int index = 0;
-    while (n != NULL) {
-        if (union_comparision(n->meta.data, thing)){
-            printf("\n[erase] On index %d was deleted: ", index);
-            print_element(n->meta);
-            printf("\n");
-            remove_node(&n);
-            queue->size -= 1;
-        }
-        index++;
-        n = walk_forward(n);
-    }
-}
-
-void edit(list *queue, something thing) {
-    node *n = queue->elements;
-    int index = 0;
-    while (n != NULL) {
-        if (union_comparision(n->meta.data, thing)) {
-            printf("\n[edit] On index %d was editing: ", index);
-            print_element(n->meta);
-            printf("\n");
-            insert_node(n);
-        }
-        index++;
-        n = walk_forward(n);
-    }
-}
-
 
 void menu(list *queue) {
     int command, status;
