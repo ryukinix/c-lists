@@ -39,17 +39,19 @@
  */
 
 
-
 // pop the stack (remove the head)
 int pop(list *stack) {
+    node *n = stack->elements;
     if (stack->state == empty) {
         return -1;
     } else {
-        printf("[pop] Pop head: ");
-        print_element(stack->elements->meta);
+        n = walk_to_tail(n);
+        printf("[pop] Pop tail: ");
+        print_element(n->meta);
         printf("\n");
-        free(stack->elements);
-        stack->elements = stack->elements->next;
+        n->back->next= NULL;
+        free(n);
+        n = NULL;
         stack->size -= 1;
     }
     return 0;
