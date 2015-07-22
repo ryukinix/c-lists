@@ -42,14 +42,14 @@
 
 // pop the queue (remove the head)
 int pop(list *queue) {
+    node *n = queue->elements;
     if (queue->state == empty) {
         return -1;
     } else {
         printf("[pop] Pop head: ");
-        print_element(queue->elements->meta);
+        print_element(n->meta);
         printf("\n");
-        free(queue->elements);
-        queue->elements = queue->elements->next;
+        remove_node(&n);
         queue->size -= 1;
     }
     return 0;
