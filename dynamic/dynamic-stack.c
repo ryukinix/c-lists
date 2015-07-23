@@ -49,7 +49,7 @@ int pop(list *stack) {
         printf("[pop] Pop tail: ");
         print_element(n->meta);
         printf("\n");
-        remove_node(n);
+        remove_node(&n);
         stack->size -= 1;
     }
     return 0;
