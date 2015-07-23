@@ -29,6 +29,26 @@ node* walk_backwards(node *n){
     return n;
 }
 
+// walk until the n node of the linked list
+node* walk_until(node *head, int index){
+    int i;
+    node *n = head;
+    for (i = 0; i < index && n != NULL; i++)
+        n = walk_forward(n);
+    return n;
+}
+
+node* walk_to_tail(node *head){
+    node* n = head;
+
+    while (n->next != NULL) {
+        n = walk_forward(n);
+    }
+
+    return n;
+}
+
+
 void insert_node(node *n){
     // type choose and input of data
     new_meta(&(n->meta));
@@ -62,24 +82,6 @@ void remove_node(node **some_node){
 }
 
 
-// walk until the n node of the linked list
-node* walk_until(node *head, int index){
-    int i;
-    node *n = head;
-    for (i = 0; i < index && n != NULL; i++)
-        n = walk_forward(n);
-    return n;
-}
-
-node* walk_to_tail(node *head){
-    node* n = head;
-
-    while (n->next != NULL) {
-        n = walk_forward(n);
-    }
-
-    return n;
-}
 
 /* =============================================
  *
