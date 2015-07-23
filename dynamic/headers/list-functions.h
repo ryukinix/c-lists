@@ -42,6 +42,26 @@ void start_node(node **n){
     (*n)->next = NULL;
 }
 
+void remove_node(node **some_node){
+    printf("self: %p\n", *some_node);
+    printf("next: %p\n", (*some_node)->next);
+    printf("back: %p\n", (*some_node)->back);
+
+    // free pointer
+    free(*some_node);
+
+    // for 'back' element, jump the 'next' reference 
+    if ((*some_node)->back != NULL)
+        (*some_node)->back->next = (*some_node)->next;
+    // for 'next' element, jump the 'back' reference
+    if ((*some_node)->next != NULL)
+        (*some_node)->next->back = (*some_node)->back;
+
+    // pointer this node to next element
+    *some_node = (*some_node)->next;
+}
+
+
 // walk until the n node of the linked list
 node* walk_until(node *head, int index){
     int i;
@@ -61,21 +81,12 @@ node* walk_to_tail(node *head){
     return n;
 }
 
-void remove_node(node *some_node){
-    // jump the reference for backwards element
-    if (some_node->back != NULL)
-        some_node->back->next = some_node->next;
-    if (some node->next != NULL);
-        some_node->next->back = some_node->back
-
-    // free that pointer
-    free(some_node);
-
-    // pointer this node to next
-    some_node = some_node->next;
-}
-
-// END
+/* =============================================
+ *
+ *  -*-   List manipulation functions    -*-
+ *
+ * =============================================
+ */
 
 // print the list
 void print_list(list *l) {
@@ -90,8 +101,18 @@ void print_list(list *l) {
     printf("]\n");
 }
 
+void free_list(list *l){
+    node *n = l->elements;
+    while (n != NULL){
+        free(n);
+        n = walk_forward(n);
+    }
+}
+
+
 // clear the list
 void clear_list(list *l){
+    free_list(l);
     l->size = 0;
     l->elements = NULL;
     l->state = empty;
@@ -160,7 +181,7 @@ void erase(list *l, something thing) {
             printf("\n[erase] On index %d was deleted: ", index);
             print_element(n->meta);
             printf("\n");
-            remove_node(n);
+            remove_node(&n);
             l->size -= 1;
         }
         index++;
