@@ -63,6 +63,7 @@ void start_node(node **n){
 }
 
 void remove_node(node **some_node){
+    // debug
     printf("self: %p\n", *some_node);
     printf("next: %p\n", (*some_node)->next);
     printf("back: %p\n", (*some_node)->back);
@@ -90,7 +91,6 @@ void remove_node(node **some_node){
  * =============================================
  */
 
-// print the list
 void print_list(list *l) {
     int i;
     node *n = l->elements;
@@ -103,7 +103,7 @@ void print_list(list *l) {
     printf("]\n");
 }
 
-void free_list(list *l){
+void free_list(list *l) {
     node *n = l->elements;
     while (n != NULL){
         free(n);
@@ -111,16 +111,13 @@ void free_list(list *l){
     }
 }
 
-
-// clear the list
-void clear_list(list *l){
+void clear_list(list *l) {
     free_list(l);
     l->size = 0;
     l->elements = NULL;
     l->state = empty;
 }
 
-// verify the state of list
 void verify_state(list *l) {
     if (l->size == 0)
         l->state = empty;
@@ -128,7 +125,6 @@ void verify_state(list *l) {
         l->state = available;
 }
 
-// start the list
 void start(list *l) {
     // initial size;
     l->size = 0;
@@ -139,7 +135,6 @@ void start(list *l) {
     // start the initial values
     l->state = empty;
 }
-
 
 // insert random values all on the list
 void random_values(list *l) {
@@ -176,18 +171,19 @@ void search(list *l, something thing) {
 }
 
 void erase(list *l, something thing) {
-    node *n = l->elements;
+    node **n = &(l->elements);
     int index = 0;
-    while (n != NULL) {
-        if (union_comparision(n->meta.data, thing)){
+    while ((*n) != NULL) {
+        if (union_comparision((*n)->meta.data, thing)){
             printf("\n[erase] On index %d was deleted: ", index);
-            print_element(n->meta);
+            print_element((*n)->meta);
             printf("\n");
-            remove_node(&n);
+            remove_node(n);
             l->size -= 1;
+            return; 
         }
         index++;
-        n = walk_forward(n);
+        *n = (*n)->next;
     }
 }
 
