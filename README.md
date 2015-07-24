@@ -25,7 +25,9 @@ Clone this repository and after it, open a terminal session on the working direc
 
 ## History
 
-For now, after hours, I have finally implemented a basic control system for a "half-dynamic" queue.
+Nothing else matters, my real health of my mind is:
+
+![my-real-state](what-dog.jpg)
 
 ## Contributors
   * Me (Manoel Vilela)
@@ -37,7 +39,7 @@ For now, after hours, I have finally implemented a basic control system for a "h
 GPLv3
 
 ## Roadmap
-  - [X] make a system control type
+  - [X] make a abstract type
   - [ ] queue
     - [X] static
       - [X] insert
