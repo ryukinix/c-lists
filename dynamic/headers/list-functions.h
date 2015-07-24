@@ -19,55 +19,38 @@
  * =============================================
  */
 
-node* walk_forward(node *n){
-    n = n->next;
-    return n;
+node* walk_forward(node *some_node) {
+    some_node = some_node->next;
+    return some_node;
 }
 
-node* walk_backwards(node *n){
-    n = n->back;
-    return n;
+node* walk_backwards(node *some_node) {
+    some_node = some_node->back;
+    return some_node;
 }
 
-// walk until the n node of the linked list
-node* walk_until(node *head, int index){
-    int i;
-    node *n = head;
-    for (i = 0; i < index && n != NULL; i++)
-        n = walk_forward(n);
-    return n;
-}
-
-node* walk_to_tail(node *head){
-    node* n = head;
-
-    while (n->next != NULL) {
-        n = walk_forward(n);
+node* walk_to_tail(node *some_node){
+    while (some_node->next != NULL){
+        some_node = walk_forward(some_node);
     }
 
-    return n;
+    return some_node;
 }
 
-
-void insert_node(node *n){
+void insert_node(node *some_node){
     // type choose and input of data
-    new_meta(&(n->meta));
+    new_meta(&(some_node->meta));
 }
 
 
-void start_node(node **n){
+void start_node(node **some_node){
     // allocation of memory
-    *n = (node *) malloc(sizeof(node));
-    insert_node(*n);
-    (*n)->next = NULL;
+    *some_node = (node *) malloc(sizeof(node));
+    insert_node(*some_node);
+    (*some_node)->next = NULL;
 }
 
 void remove_node(node **some_node){
-    // debug
-    printf("self: %p\n", *some_node);
-    printf("next: %p\n", (*some_node)->next);
-    printf("back: %p\n", (*some_node)->back);
-
     // free pointer
     free(*some_node);
 
@@ -93,21 +76,21 @@ void remove_node(node **some_node){
 
 void print_list(list *l) {
     int i;
-    node *n = l->elements;
+    node *some_node = l->elements;
 
     printf("%s: [ ", l->subclass);
-    for (i = 0; n != NULL; i++){
-        print_element(n->meta);
-        n = walk_forward(n);
+    for (i = 0; some_node != NULL; i++){
+        print_element(some_node->meta);
+        some_node = walk_forward(some_node);
     }
     printf("]\n");
 }
 
 void free_list(list *l) {
-    node *n = l->elements;
-    while (n != NULL){
-        free(n);
-        n = walk_forward(n);
+    node *some_node = l->elements;
+    while (some_node != NULL){
+        free(some_node);
+        some_node = walk_forward(some_node);
     }
 }
 
@@ -142,63 +125,64 @@ void random_values(list *l) {
     time_t t;
     srand((unsigned) time(&t));
 
-    node *n = l->elements;
+    node *some_node = l->elements;
 
     for (i = 0; i < l->size; i++) {
-        identifier type = n->meta.type;
+        identifier type = some_node->meta.type;
         if (type == integer)
-            n->meta.data.integer = rand() % 100;
+            some_node->meta.data.integer = rand() % 100;
         else if (type == character)
-            n->meta.data.character = 'a' + rand() % 26;
+            some_node->meta.data.character = 'a' + rand() % 26;
         else if (type == real)
-            n->meta.data.real = (rand() % 100 / ( (rand () % 10) + 1));
-        n = walk_forward(n);
+            some_node->meta.data.real = (rand() % 100 / ( (rand () % 10) + 1));
+        some_node = walk_forward(some_node);
     }
 }
 
 void search(list *l, something thing) {
-    node *n = l->elements;
+    node *some_node = l->elements;
     int index = 0;
-    while (n != NULL) {
-        if (union_comparision(n->meta.data, thing)){
+    while (some_node != NULL) {
+        if (union_comparision(some_node->meta.data, thing)){
             printf("\n[search] On index %d was found: ", index);
-            print_element(n->meta);
+            print_element(some_node->meta);
             printf("\n");
         }
         index++;
-        n = walk_forward(n);
+        some_node = walk_forward(some_node);
     }
 }
 
 void erase(list *l, something thing) {
-    node **n = &(l->elements);
-    int index = 0;
-    while ((*n) != NULL) {
-        if (union_comparision((*n)->meta.data, thing)){
-            printf("\n[erase] On index %d was deleted: ", index);
-            print_element((*n)->meta);
-            printf("\n");
-            remove_node(n);
-            l->size -= 1;
-            return; 
-        }
-        index++;
-        *n = (*n)->next;
-    }
+    printf("A LOT OF BUGS!\n");
+    // node **some_node = &(l->elements);
+    // int index = 0;
+    // while ((*some_node) != NULL) {
+    //     if (union_comparision((*some_node)->meta.data, thing)){
+    //         printf("\n[erase] On index %d was deleted: ", index);
+    //         print_element((*some_node)->meta);
+    //         printf("\n");
+    //         remove_node(some_node);
+    //         l->size -= 1;
+    //         return; 
+    //     }
+    //     index++;
+    //     some_node = &((*some_node)->next);
+    // }
 }
 
 void edit(list *l, something thing) {
-    node *n = l->elements;
+    node *some_node = l->elements;
     int index = 0;
-    while (n != NULL) {
-        if (union_comparision(n->meta.data, thing)) {
+    while (some_node != NULL) {
+        if (union_comparision(some_node->meta.data, thing)) {
             printf("\n[edit] On index %d was editing: ", index);
-            print_element(n->meta);
+            print_element(some_node->meta);
             printf("\n");
-            insert_node(n);
+            insert_node(some_node);
         }
         index++;
-        n = walk_forward(n);
+        some_node = walk_forward(some_node);
     }
 }
 

@@ -39,19 +39,24 @@
  */
 
 
-// pop the stack (remove the head)
+// pop the stack (remove the tail)
 int pop(list *stack) {
-    node *n = stack->elements;
-    if (stack->state == empty) {
+    if (stack->state == empty)
         return -1;
-    } else {
-        n = walk_to_tail(n);
-        printf("[pop] Pop tail: ");
-        print_element(n->meta);
-        printf("\n");
-        remove_node(&n);
-        stack->size -= 1;
-    }
+    
+    // printf("[pop] Pop tail: ");
+    // print_element((*some_node)->meta);
+    // printf("\n");
+
+    printf("A lot of bugs!\n");
+    /*===========================================================
+     *
+     *  -*-  rebuild this function: correct remove tails   -*-
+     *
+     *===========================================================
+     */
+
+    
     return 0;
 }
 
@@ -68,9 +73,9 @@ void insert(list *stack) {
         return;
     }
 
-    node *old_tail = walk_to_tail(stack->elements);
     node *new_tail;
     start_node(&new_tail);
+    node *old_tail = walk_to_tail(stack->elements);
     new_tail->back = old_tail;
     old_tail->next = new_tail;
     stack->size += 1;

@@ -40,40 +40,31 @@
 
 
 
-// pop the deque (remove the head)
+// pop the deque (remove left or right)
 int pop(list *deque) {
-    if (deque->state == empty) {
+    if (deque->state == empty) 
         return -1;
-    } else {
-        printf("[pop] Pop head: ");
-        print_element(deque->elements->meta);
-        printf("\n");
-        free(deque->elements);
-        deque->elements = deque->elements->next;
-        deque->size -= 1;
-    }
-    return 0;
+    printf("Not implemented yet!\n");
+    /*===========================================================
+     *
+     *  -*-  rebuild this function: pop_left + pop_right   -*-
+     *
+     *===========================================================
+     */
+
+     return 0;
 }
 
 
 // insert a value in a tail of deque;
 void insert(list *deque) {
-    // create a node if deque->elements is nil
-    if (deque->elements == NULL) {
-        node *first;
-        start_node(&first);
-        deque->elements = first;
-        deque->elements->back = NULL;
-        deque->size = 1;
-        return;
-    }
-
-    node *old_tail = walk_to_tail(deque->elements);
-    node *new_tail;
-    start_node(&new_tail);
-    new_tail->back = old_tail;
-    old_tail->next = new_tail;
-    deque->size += 1;
+    printf("Not implemented yet!\n");
+    /*===========================================================
+     *
+     *  -*- rebuild this function: insert_left + insert_right -*-
+     *
+     *===========================================================
+     */
 }
 
 
