@@ -40,7 +40,7 @@ GPLv3
 
 ## Roadmap
   - [X] make a abstract type
-  - [ ] queue
+  - [X] queue
     - [X] static
       - [X] insert
       - [X] pop
@@ -59,9 +59,7 @@ GPLv3
       - [X] edit
     - [ ] dynamic
       - [X] insert
-      - [ ] pop
-        - [X] basic
-        - [ ] bug with remove the root of list
+      - [ ] pop (don't work the function 'walk_to_tail' with get pointer-to-pointer)
       - [X] search
       - [X] edit
   - [ ] deque
@@ -71,7 +69,7 @@ GPLv3
       - [X] search
       - [X] edit
     - [ ] dynamic
-      - [ ] insert
-      - [ ] pop
+      - [ ] insert (need abstract [queue + stack] * insert )
+      - [ ] pop (need abstract [queue + stack] * pop )
       - [X] search
       - [X] edit
