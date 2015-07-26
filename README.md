@@ -25,9 +25,33 @@ Clone this repository and after it, open a terminal session on the working direc
 
 ## History
 
-Nothing else matters, my real health of my mind is:
+![my-delicious-state](survival.jpg)
 
-![my-real-state](what-dog.jpg)
+Race, life’s a race
+And **I’m gonna win**
+Yes, **I’m gonna win**
+I’ll light the fuse and **I’ll never lose**
+
+And I choose to survive, whatever it takes
+You won’t pull ahead
+I’ll keep up the pace
+I’ll reveal my strength to the whole human race
+
+Yes, I am prepared to stay alive
+And I won’t forgive, vengeance is mine
+And **I won’t give in, because I choose to thrive**
+Yes, **I'm gonna win**.
+
+Race, it’s a race
+And **I’m gonna win**
+Yes, **I’m gonna win**
+I’ll light the fuse and **I’ll never lose**
+
+And I choose to survive, whatever it takes
+You won’t pull ahead ’cause I’ll keep up the pace
+I’ll reveal my strength to the whole human race
+Yes, I'm gonna win.
+
 
 ## Contributors
   * Me (Manoel Vilela)
@@ -40,6 +64,10 @@ GPLv3
 
 ## Roadmap
   - [X] make a abstract type
+  - [X] auxiliar functions
+    - [X] RandomList
+    - [X] Erase (any element)
+    - [X] ClearList
   - [X] queue
     - [X] static
       - [X] insert
@@ -51,25 +79,33 @@ GPLv3
       - [X] pop
       - [X] search
       - [X] edit
-  - [ ] stack
+  - [X] stack
     - [X] static
       - [X] insert
       - [X] pop
       - [X] search
       - [X] edit
-    - [ ] dynamic
-      - [X] insert
-      - [ ] pop (don't work the function 'walk_to_tail' with get pointer-to-pointer)
-      - [X] search
-      - [X] edit
-  - [ ] deque
-    - [X] static
+    - [X] dynamic
       - [X] insert
       - [X] pop
       - [X] search
       - [X] edit
-    - [ ] dynamic
-      - [ ] insert (need abstract [queue + stack] * insert )
-      - [ ] pop (need abstract [queue + stack] * pop )
+  - [x] deque
+    - [X] static
+      - [X] insert
+        - [X] insert_left
+        - [X] insert_right
+      - [X] pop
+        - [X] pop_left
+        - [X] pop_right
+      - [X] search
+      - [X] edit
+    - [X] dynamic
+      - [X] insert
+        - [X] insert_left
+        - [X] insert_right
+      - [X] pop
+        - [X] pop_left
+        - [X] pop_right
       - [X] search
       - [X] edit

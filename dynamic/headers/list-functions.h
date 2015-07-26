@@ -20,52 +20,67 @@
  */
 
 node* walk_forward(node *some_node) {
-    some_node = some_node->next;
-    return some_node;
+    return some_node->next;
 }
 
 node* walk_backwards(node *some_node) {
-    some_node = some_node->back;
-    return some_node;
+    return some_node->back;
 }
 
-node* walk_to_tail(node *some_node){
-    while (some_node->next != NULL){
+node* walk_to_tail(node *some_node) {
+    while (some_node->next != NULL)
         some_node = walk_forward(some_node);
-    }
 
     return some_node;
 }
 
-void insert_node(node *some_node){
-    // type choose and input of data
+node** tail_pointer(node **some_node) {
+    if ((*some_node)->next == NULL)
+        return some_node;
+    else
+        return tail_pointer(&((*some_node)->next));
+}
+
+void insert_node(node *some_node) {
     new_meta(&(some_node->meta));
 }
 
-
-void start_node(node **some_node){
+void start_node(node **some_node) {
     // allocation of memory
     *some_node = (node *) malloc(sizeof(node));
-    insert_node(*some_node);
     (*some_node)->next = NULL;
+    (*some_node)->back = NULL;    
 }
 
-void remove_node(node **some_node){
+node* remove_node(node *some_node) {
     // free pointer
-    free(*some_node);
+    free(some_node);
 
     // for 'back' element, jump the 'next' reference 
-    if ((*some_node)->back != NULL)
-        (*some_node)->back->next = (*some_node)->next;
+    if (some_node->back != NULL)
+        some_node->back->next = some_node->next;
     // for 'next' element, jump the 'back' reference
-    if ((*some_node)->next != NULL)
-        (*some_node)->next->back = (*some_node)->back;
+    if (some_node->next != NULL)
+        some_node->next->back = some_node->back;
 
     // pointer this node to next element
-    *some_node = (*some_node)->next;
+    some_node = some_node->next;
+
+    return some_node;
 }
 
+/* =============================================
+ *
+ *  -*-   List manipulation functions    -*-
+ *
+ * =============================================
+ */
 
+void debug_pointers(node **some_node) {
+    printf("self := %p", (*some_node));
+    printf("next := %p", (*some_node)->next);
+    printf("back := %p", (*some_node)->back);
+}
 
 /* =============================================
  *
@@ -153,22 +168,31 @@ void search(list *l, something thing) {
     }
 }
 
+void erase_search(node **some_node, something thing, int *size, int index){
+    if ((*some_node) == NULL) {
+        return ;
+    }
+
+    else if (union_comparision((*some_node)->meta.data, thing)) {
+        printf("\n[erase] On index %d was deleted: ", index);
+        print_element((*some_node)->meta);
+        printf("\n");
+        *some_node = remove_node(*some_node);
+        *size -= 1;
+    }
+
+    else {
+        erase_search(&((*some_node)->next), thing, size, index + 1);
+    }
+}
+
+
 void erase(list *l, something thing) {
-    printf("A LOT OF BUGS!\n");
-    // node **some_node = &(l->elements);
-    // int index = 0;
-    // while ((*some_node) != NULL) {
-    //     if (union_comparision((*some_node)->meta.data, thing)){
-    //         printf("\n[erase] On index %d was deleted: ", index);
-    //         print_element((*some_node)->meta);
-    //         printf("\n");
-    //         remove_node(some_node);
-    //         l->size -= 1;
-    //         return; 
-    //     }
-    //     index++;
-    //     some_node = &((*some_node)->next);
-    // }
+    node **head = &(l->elements);
+    int *size = &(l->size);
+    int index = 0;
+
+    erase_search(head, thing, size, index);
 }
 
 void edit(list *l, something thing) {

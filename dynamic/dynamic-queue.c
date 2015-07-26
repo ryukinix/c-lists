@@ -39,43 +39,48 @@
  */
 
 
-
 // pop the queue (remove the head)
-int pop(list *queue) {
+void pop_left(node **head) {
+    printf("[pop] Pop head: ");
+    print_element((*head)->meta);
+    printf("\n");
+    *head = remove_node(*head);
+}
+
+int pop(list *queue){
     node **some_node = &(queue->elements);
-    if (queue->state == empty) {
+    if (queue->state == empty) 
         return -1;
-    } else {
-        printf("[pop] Pop head: ");
-        print_element((*some_node)->meta);
-        printf("\n");
-        remove_node(some_node);
+    else {
+        pop_left(some_node);
         queue->size -= 1;
     }
+
     return 0;
 }
 
 
-// insert a value in a tail of queue;
-void insert(list *queue) {
-    // create a node if queue->elements is nil
-    if (queue->elements == NULL) {
-        node *first;
-        start_node(&first);
-        queue->elements = first;
-        queue->elements->back = NULL;
-        queue->size = 1;
-        return;
+// insert a new node after the tail
+node* insert_right(node *some_node, meta_data element) {
+    //if some_node not points to nil, try insert in next node recursively
+    if (some_node != NULL) {
+        node *new_node = insert_right(some_node->next, element);
+        new_node->back = some_node; 
+        some_node->next = new_node;
     }
-
-    node *old_tail = walk_to_tail(queue->elements);
-    node *new_tail;
-    start_node(&new_tail);
-    new_tail->back = old_tail;
-    old_tail->next = new_tail;
-    queue->size += 1;
+    //if some_node points to nil, alloc, attribue and points next to nil
+    else {
+        start_node(&some_node);
+        some_node->meta = element;
+    }
+    //return the some_node (should be a new 'node' or no)
+    return some_node;
 }
 
+void insert(list *queue, meta_data element){
+    queue->elements = insert_right(queue->elements, element);
+    queue->size += 1;
+}
 
 void menu(list *queue) {
     int command, status;
@@ -106,7 +111,8 @@ void menu(list *queue) {
         switch (command) {
             case 1:
                 printf("== Insert ==\n");
-                insert(queue);
+                new_meta(&element);
+                insert(queue, element);
                 break;
             case 2:
                 printf("== Pop ==\n");

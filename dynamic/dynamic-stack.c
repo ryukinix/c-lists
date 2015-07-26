@@ -40,47 +40,44 @@
 
 
 // pop the stack (remove the tail)
-int pop(list *stack) {
-    if (stack->state == empty)
+void pop_right(node **some_node) {
+    node **tail = tail_pointer(some_node);
+    printf("[pop] Pop tail: ");
+    print_element((*tail)->meta);
+    printf("\n");
+    *tail = remove_node(*tail);
+}
+
+int pop(list *stack){
+    if (stack->size == empty)
         return -1;
-    
-    // printf("[pop] Pop tail: ");
-    // print_element((*some_node)->meta);
-    // printf("\n");
-
-    printf("A lot of bugs!\n");
-    /*===========================================================
-     *
-     *  -*-  rebuild this function: correct remove tails   -*-
-     *
-     *===========================================================
-     */
-
-    
+    pop_right(&(stack->elements));
+    stack->size -= 1;
     return 0;
 }
 
 
-// insert a value in a tail of stack;
-void insert(list *stack) {
-    // create a node if stack->elements is nil
-    if (stack->elements == NULL) {
-        node *first;
-        start_node(&first);
-        stack->elements = first;
-        stack->elements->back = NULL;
-        stack->size = 1;
-        return;
+// insert a new node after the tail
+node* insert_right(node *some_node, meta_data element) {
+    //if some_node not points to nil, try insert in next node recursively
+    if (some_node != NULL) {
+        node *new_node = insert_right(some_node->next, element);
+        new_node->back = some_node; 
+        some_node->next = new_node;
     }
-
-    node *new_tail;
-    start_node(&new_tail);
-    node *old_tail = walk_to_tail(stack->elements);
-    new_tail->back = old_tail;
-    old_tail->next = new_tail;
-    stack->size += 1;
+    //if some_node points to nil, alloc, attribue and points next to nil
+    else {
+        start_node(&some_node);
+        some_node->meta = element;
+    }
+    //return the some_node (should be a new 'node' or no)
+    return some_node;
 }
 
+void insert(list *queue, meta_data element){
+    queue->elements = insert_right(queue->elements, element);
+    queue->size += 1;
+}
 
 void menu(list *stack) {
     int command, status;
@@ -111,7 +108,8 @@ void menu(list *stack) {
         switch (command) {
             case 1:
                 printf("== Insert ==\n");
-                insert(stack);
+                new_meta(&element);
+                insert(stack, element);
                 break;
             case 2:
                 printf("== Pop ==\n");

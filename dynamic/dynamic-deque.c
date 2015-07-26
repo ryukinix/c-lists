@@ -38,33 +38,100 @@
  * ================================================
  */
 
-
+// (remove the head)
+void pop_left(node **head) {
+    printf("[pop] Pop head: ");
+    print_element((*head)->meta);
+    printf("\n");
+    *head = remove_node(*head);
+}
+// (remove the tail)
+void pop_right(node **some_node) {
+    node **tail = tail_pointer(some_node);
+    printf("[pop] Pop tail: ");
+    print_element((*tail)->meta);
+    printf("\n");
+    *tail = remove_node(*tail);
+}
 
 // pop the deque (remove left or right)
 int pop(list *deque) {
     if (deque->state == empty) 
         return -1;
-    printf("Not implemented yet!\n");
-    /*===========================================================
-     *
-     *  -*-  rebuild this function: pop_left + pop_right   -*-
-     *
-     *===========================================================
-     */
+    
+    int orientation;
+    puts("Choose the orientation of pop!");
+    printf("0. Left\n1. Right\n");
+    printf("Put a command: ");
+    scanf("%d", &orientation);
+    clear_buffer();
 
-     return 0;
+    if (orientation)
+        pop_right(&(deque->elements));
+    else
+        pop_left(&(deque->elements));
+    
+    return 0;
 }
+
+
+// insert a value before the head (i think this function dont't work)
+node* insert_left(node *head, meta_data element) {
+    //start a new node
+    node *new_head;
+    start_node(&new_head);
+    
+    //attribute the element in node
+    new_head->meta = element;
+    new_head->next = head;
+
+    //attribute the back-pointer of the head new_head
+    //new_head -> head -> end_of_list (...)
+    if (head != NULL)
+        head->back = new_head;
+
+    //return the new_head
+    return new_head;
+}
+
+// insert a new node after the tail
+node* insert_right(node *some_node, meta_data element) {
+    //if some_node not points to nil, try insert in next node recursively
+    if (some_node != NULL) {
+        node *new_node = insert_right(some_node->next, element);
+        new_node->back = some_node; 
+        some_node->next = new_node;
+    }
+    //if some_node points to nil, alloc, attribue and points next to nil
+    else {
+        start_node(&some_node);
+        some_node->meta = element;
+    }
+    //return the some_node (should be a new 'node' or no)
+    return some_node;
+}
+
 
 
 // insert a value in a tail of deque;
 void insert(list *deque) {
-    printf("Not implemented yet!\n");
-    /*===========================================================
-     *
-     *  -*- rebuild this function: insert_left + insert_right -*-
-     *
-     *===========================================================
-     */
+    int orientation;
+    puts("Choose the orientation of insertion!");
+    printf("0. Left\n1. Right\n");
+    printf("Put a command: ");
+    scanf("%d", &orientation);
+    clear_buffer();
+
+    meta_data data;
+    new_meta(&data);
+
+    
+    if (orientation)
+        deque->elements = insert_right(deque->elements, data);
+    else
+        deque->elements = insert_left(deque->elements, data);
+
+    deque->size += 1;
 }
 
 
@@ -134,14 +201,13 @@ void menu(list *deque) {
             case 0:
                 printf("Leaving the universe...\n");
                 break;
-
             default:
                 printf("Command invalid, try again.!\n");
                 break;
         }
 
         pause("Press enter to continue...");
-    }while(command != 0);
+    } while(command != 0);
 }
 
 
