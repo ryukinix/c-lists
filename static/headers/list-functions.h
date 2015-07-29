@@ -167,4 +167,42 @@ void random_values(list *l) {
     l->last_index = i - 1;
 }
 
+/* =============================================
+ *
+ *  -*-      Search, erase and edit      -*-
+ *
+ * =============================================
+ */
+
+
+int search(list *queue, something thing) {
+    int i;
+
+    for (i = 0; i < queue->size; i++)
+        if (union_comparision(queue->elements[i].data, thing))
+            return i;
+    return -1;
+}
+
+int erase(list *queue, something thing) {
+    int index = search(queue, thing);
+
+    if (index != -1)
+        del(queue, index);
+    else
+        return -1;
+
+    return index;
+}
+
+int edit(list *queue, int index) {
+    // verify if index is not do the pesar of violate the lenght of vector
+    if (!(index >= 0 && index <= queue->size))
+        return -1;
+
+    insert_on(queue, index);
+
+    return 0;
+}
+
 #endif // LIST_FUNCTIONS_H

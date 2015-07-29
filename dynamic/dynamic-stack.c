@@ -38,16 +38,6 @@
  * ================================================
  */
 
-
-// pop the stack (remove the tail)
-void pop_right(node **some_node) {
-    node **tail = tail_pointer(some_node);
-    printf("[pop] Pop tail: ");
-    print_element((*tail)->meta);
-    printf("\n");
-    *tail = remove_node(*tail);
-}
-
 int pop(list *stack){
     if (stack->size == empty)
         return -1;
@@ -57,25 +47,8 @@ int pop(list *stack){
 }
 
 
-// insert a new node after the tail
-node* insert_right(node *some_node, meta_data element) {
-    //if some_node not points to nil, try insert in next node recursively
-    if (some_node != NULL) {
-        node *new_node = insert_right(some_node->next, element);
-        new_node->back = some_node; 
-        some_node->next = new_node;
-    }
-    //if some_node points to nil, alloc, attribue and points next to nil
-    else {
-        start_node(&some_node);
-        some_node->meta = element;
-    }
-    //return the some_node (should be a new 'node' or no)
-    return some_node;
-}
-
-void insert(list *queue, meta_data element){
-    queue->elements = insert_right(queue->elements, element);
+void push(list *queue, meta_data element){
+    queue->elements = push_right(queue->elements, element);
     queue->size += 1;
 }
 
@@ -93,7 +66,7 @@ void menu(list *stack) {
         printf("\
                 --> 0.Exit\n\n\
          ===[>Fundamental Methods<]===\n\n\
-                1.Insert\n\
+                1.push\n\
                 2.Pop\n\
                 3.Print\n\
                 4.Search\n\
@@ -107,9 +80,9 @@ void menu(list *stack) {
 
         switch (command) {
             case 1:
-                printf("== Insert ==\n");
+                printf("== push ==\n");
                 new_meta(&element);
-                insert(stack, element);
+                push(stack, element);
                 break;
             case 2:
                 printf("== Pop ==\n");

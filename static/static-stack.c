@@ -55,47 +55,16 @@ int pop(list *stack) {
 }
 
 
-// insert a value in a tail of stack;
-int insert(list *stack) {
+// push a value in a tail of stack;
+int push(list *stack) {
     if (stack->state == full)
         return -1;
 
     stack->last_index++;
-    insert_on(stack, stack->last_index);
+    push_on(stack, stack->last_index);
 
     return 0;
 }
-
-int search(list *stack, something thing) {
-    int i;
-
-    for (i = 0; i < stack->size; i++)
-        if (union_comparision(stack->elements[i].data, thing))
-            return i;
-    return -1;
-}
-
-int erase(list *stack, something thing) {
-    int index = search(stack, thing);
-
-    if (index != -1)
-        del(stack, index);
-    else
-        return -1;
-
-    return index;
-}
-
-int edit(list *stack, int index) {
-    // verify if index is not do the pesar of violate the lenght of vector
-    if (!(index >= 0 && index <= stack->size))
-        return -1;
-
-    insert_on(stack, index);
-
-    return 0;
-}
-
 
 void menu(list *stack) {
     int command, status;
@@ -112,7 +81,7 @@ void menu(list *stack) {
         printf("\
                 --> 0.Exit\n\n\
          ===[>Fundamental Methods<]===\n\n\
-                1.Insert\n\
+                1.push\n\
                 2.Pop\n\
                 3.Print_list\n\
                 4.Search\n\
@@ -128,7 +97,7 @@ void menu(list *stack) {
 
         switch (command) {
             case 1:
-                status = insert(stack);
+                status = push(stack);
                 if (status == -1) puts("Full stack!");
                 break;
 

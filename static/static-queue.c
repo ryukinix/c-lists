@@ -55,43 +55,13 @@ int pop(list *queue) {
 }
 
 
-// insert a value in a tail of queue;
-int insert(list *queue) {
+// push a value in a tail of queue;
+int push(list *queue) {
     if (queue->state == full)
         return -1;
 
     queue->last_index++;
-    insert_on(queue, queue->last_index);
-
-    return 0;
-}
-
-int search(list *queue, something thing) {
-    int i;
-
-    for (i = 0; i < queue->size; i++)
-        if (union_comparision(queue->elements[i].data, thing))
-            return i;
-    return -1;
-}
-
-int erase(list *queue, something thing) {
-    int index = search(queue, thing);
-
-    if (index != -1)
-        del(queue, index);
-    else
-        return -1;
-
-    return index;
-}
-
-int edit(list *queue, int index) {
-    // verify if index is not do the pesar of violate the lenght of vector
-    if (!(index >= 0 && index <= queue->size))
-        return -1;
-
-    insert_on(queue, index);
+    push_on(queue, queue->last_index);
 
     return 0;
 }
@@ -112,7 +82,7 @@ void menu(list *queue) {
         printf("\
                 --> 0.Exit\n\n\
          ===[>Fundamental Methods<]===\n\n\
-                1.Insert\n\
+                1.push\n\
                 2.Pop\n\
                 3.Print_list\n\
                 4.Search\n\
@@ -128,7 +98,7 @@ void menu(list *queue) {
 
         switch (command) {
             case 1:
-                status = insert(queue);
+                status = push(queue);
                 if (status == -1) puts("Full queue!");
                 break;
 

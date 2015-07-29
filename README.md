@@ -70,40 +70,40 @@ GPLv3
     - [X] ClearList
   - [X] queue
     - [X] static
-      - [X] insert
+      - [X] push
       - [X] pop
       - [X] search
       - [X] edit
     - [X] dynamic
-      - [X] insert
+      - [X] push
       - [X] pop
       - [X] search
       - [X] edit
   - [X] stack
     - [X] static
-      - [X] insert
+      - [X] push
       - [X] pop
       - [X] search
       - [X] edit
     - [X] dynamic
-      - [X] insert
+      - [X] push
       - [X] pop
       - [X] search
       - [X] edit
   - [x] deque
     - [X] static
-      - [X] insert
-        - [X] insert_left
-        - [X] insert_right
+      - [X] push
+        - [X] push_left
+        - [X] push_right
       - [X] pop
         - [X] pop_left
         - [X] pop_right
       - [X] search
       - [X] edit
     - [X] dynamic
-      - [X] insert
-        - [X] insert_left
-        - [X] insert_right
+      - [X] push
+        - [X] push_left
+        - [X] push_right
       - [X] pop
         - [X] pop_left
         - [X] pop_right

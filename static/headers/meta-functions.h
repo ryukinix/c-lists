@@ -52,33 +52,4 @@ int union_comparision(something x, something y){
     return false;
 }
 
-/* // conflicts with the definition in list-type
-void type_choose(meta_data *element){
-    int command;  
-    
-    puts("Insert the type that you wish attribute!");
-    puts("1.Int\n2.Char\n3.Real\n");
-
-    printf("Put a command: ");
-    scanf("%d", &command);
-    clear_buffer();
-
-    switch(command){
-        case 1:
-            element->type = integer;
-            break;
-        case 2:
-            element->type = character;
-            break;
-        case 3:
-            element->type = real;
-            break;
-        default:
-            puts("Invalid option! Try again!");
-            type_choose(element);
-            break;       
-    }  
-}
-*/
-
 #endif // META_FUNCTIONS_H

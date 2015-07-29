@@ -124,88 +124,54 @@ void transpose(list *deque, int blocks) {
 }
 
 
-// insert a value in a tail of deque;
-int insert_right(list *deque) {
+// push a value in a tail of deque;
+int push_right(list *deque) {
     if (deque->state == full) {
         return -1;
     }
 
     deque->last_index++;
-    insert_on(deque, deque->last_index);
+    push_on(deque, deque->last_index);
 
     return 0;
 }
 
-int insert_left(list *deque) {
+int push_left(list *deque) {
     if (deque->state == full) {
         return -1;
     }
 
     deque->last_index++;
     transpose(deque, 1);
-    insert_on(deque, 0);
+    push_on(deque, 0);
 
     return 0;
 }
 
 
-int insert(list *deque) {
+int push(list *deque) {
     int command;
-    puts("]=== Insert ===[");
+    puts("]=== push ===[");
     printf(LEFT_RIGHT);
 
     scanf("%d", &command);
     clear_buffer();
 
     if (command == 1) {
-        return insert_left(deque);
+        return push_left(deque);
     }
     else if (command == 2) {
-        return insert_right(deque); 
+        return push_right(deque); 
     }
     else { 
         // this else is error prone.
-        insert(deque);
+        push(deque);
     }
 
     // temporary solution?
     return EXIT_SUCCESS;
 }
 
-
-int search(list *deque, something thing) {
-    int i;
-
-    for (i = 0; i < deque->size; i++)
-        if (union_comparision(deque->elements[i].data, thing))
-            return i;
-    return -1;
-}
-
-/* erase is already defined in stdio.h
- */
-int erase(list *deque, something thing) {
-    int index = search(deque, thing);
-
-    if (index != -1) {
-        del(deque, index);
-    }
-    else {
-        return -1;
-    }
-
-    return index;
-}
-
-int edit(list *deque, int index) {
-    // verify if the index given violates the lenght of the vector.
-    if (!(index >= 0 && index <= deque->size))
-        return -1;
-
-    insert_on(deque, index);
-
-    return 0;
-}
 
 
 void menu(list *deque) {
@@ -223,7 +189,7 @@ void menu(list *deque) {
         printf("\
                 --> 0.Exit\n\n\
          ===[>Fundamental Methods<]===\n\n\
-                1.Insert\n\
+                1.push\n\
                 2.Pop\n\
                 3.Print_list\n\
                 4.Search\n\
@@ -239,7 +205,7 @@ void menu(list *deque) {
 
         switch (command) {
             case 1:
-                status = insert(deque);
+                status = push(deque);
                 if (status == -1) puts("Full deque!");
                 break;
 
