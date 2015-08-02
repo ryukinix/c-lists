@@ -66,7 +66,7 @@ void menu(list *stack) {
         printf("\
                 --> 0.Exit\n\n\
          ===[>Fundamental Methods<]===\n\n\
-                1.push\n\
+                1.Push\n\
                 2.Pop\n\
                 3.Print\n\
                 4.Search\n\
