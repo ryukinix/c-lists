@@ -63,8 +63,8 @@ Yes, I'm gonna win.
 GPLv3
 
 ## Roadmap
-  - [X] make a abstract type
-  - [X] auxiliar functions
+  - [X] make an abstract type
+  - [X] auxiliar functions for static and dynamic lists
     - [X] RandomList
     - [X] Erase (any element)
     - [X] ClearList
