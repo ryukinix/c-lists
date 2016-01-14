@@ -13,6 +13,7 @@
  * ====================================================================
  */
 
+#include "meta-type.h"
 
 // for aux the enums
 static const char *type_strings[] = { "integer", "character",  "real"};

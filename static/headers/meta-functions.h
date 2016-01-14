@@ -8,7 +8,11 @@
  *===========================================================
  */
 
-#include <stdbool.h>
+#define true 1
+#define false 0
+
+#include "meta-type.h"
+#include <stdio.h>
 
 void print_element(meta_data element) {
     identifier type = element.type;

@@ -131,7 +131,7 @@ int push_right(list *deque) {
     }
 
     deque->last_index++;
-    push_on(deque, deque->last_index);
+    insert(deque, deque->last_index);
 
     return 0;
 }
@@ -143,7 +143,7 @@ int push_left(list *deque) {
 
     deque->last_index++;
     transpose(deque, 1);
-    push_on(deque, 0);
+    insert(deque, 0);
 
     return 0;
 }

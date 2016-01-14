@@ -35,7 +35,7 @@ void print_list(list *l) {
 
 
 //insert on index
-void insert_on(list *l, int index) {
+void insert(list *l, int index) {
     something the_thing = new_thing(l->elements[0].type);
     l->elements[index].data = the_thing;
 }
@@ -200,7 +200,7 @@ int edit(list *queue, int index) {
     if (!(index >= 0 && index <= queue->size))
         return -1;
 
-    insert_on(queue, index);
+    insert(queue, index);
 
     return 0;
 }

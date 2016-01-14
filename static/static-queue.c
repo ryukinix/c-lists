@@ -61,7 +61,7 @@ int push(list *queue) {
         return -1;
 
     queue->last_index++;
-    push_on(queue, queue->last_index);
+    insert(queue, queue->last_index);
 
     return 0;
 }

@@ -61,7 +61,7 @@ int push(list *stack) {
         return -1;
 
     stack->last_index++;
-    push_on(stack, stack->last_index);
+    insert(stack, stack->last_index);
 
     return 0;
 }
